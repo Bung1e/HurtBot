@@ -1,0 +1,7 @@
+streamlit
+black
+flake8
+python-dotenv
+fastapi
+uvicorn
+pydantic
