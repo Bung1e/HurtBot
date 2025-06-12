@@ -28,9 +28,4 @@ select = ["E", "F", "B", "I", "N", "UP", "PL", "RUF"]
 ignore = []
 
 [tool.ruff.lint.isort]
-known-first-party = ["hurtbot"]
-
-[tool.pytest.ini_options]
-testpaths = ["tests"]
-python_files = ["test_*.py"]
-addopts = "-v" 
+known-first-party = ["hurtbot"] 
