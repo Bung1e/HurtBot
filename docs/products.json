@@ -1,0 +1,1599 @@
+{
+  "categories": [
+    {
+      "id": "CAT_001",
+      "name": "Farby i Lakiery",
+      "parent_id": null,
+      "subcategories": ["Farby ścienne", "Farby do drewna", "Lakiery", "Grunty"],
+      "relationships": {
+        "type": "category",
+        "products": ["PROD_001", "PROD_002", "PROD_003", "PROD_004", "PROD_005", "PROD_011", "PROD_016", "PROD_018", "PROD_023", "PROD_028"]
+      }
+    },
+    {
+      "id": "CAT_002", 
+      "name": "Narzędzia",
+      "parent_id": null,
+      "subcategories": ["Narzędzia ręczne", "Narzędzia elektryczne", "Akcesoria"],
+      "relationships": {
+        "type": "category",
+        "products": ["PROD_006", "PROD_007", "PROD_012", "PROD_017", "PROD_021", "PROD_026", "PROD_031"]
+      }
+    },
+    {
+      "id": "CAT_003",
+      "name": "Materiały budowlane",
+      "parent_id": null,
+      "subcategories": ["Cement", "Kleje", "Izolacje", "Płytki"],
+      "relationships": {
+        "type": "category",
+        "products": ["PROD_008", "PROD_013", "PROD_019", "PROD_025", "PROD_029", "PROD_032"]
+      }
+    },
+    {
+      "id": "CAT_004",
+      "name": "Elektryka",
+      "parent_id": null,
+      "subcategories": ["Oświetlenie", "Kable", "Rozdzielnie", "Gniazdka"],
+      "relationships": {
+        "type": "category",
+        "products": ["PROD_009", "PROD_014", "PROD_020", "PROD_024", "PROD_030"]
+      }
+    },
+    {
+      "id": "CAT_005",
+      "name": "Hydraulika",
+      "parent_id": null,
+      "subcategories": ["Rury", "Armatura", "Narzędzia hydrauliczne"],
+      "relationships": {
+        "type": "category",
+        "products": ["PROD_010", "PROD_015", "PROD_022", "PROD_027"]
+      }
+    }
+  ],
+  "suppliers": [
+    {
+      "id": "SUP_001",
+      "name": "Dekoral SA",
+      "country": "Polska",
+      "contact": "dekoral@dekoral.pl",
+      "relationships": {
+        "type": "supplier",
+        "products": ["PROD_001", "PROD_002", "PROD_004", "PROD_005", "PROD_011", "PROD_018", "PROD_023"]
+      }
+    },
+    {
+      "id": "SUP_002",
+      "name": "Śnieżka",
+      "country": "Polska", 
+      "contact": "info@sniezka.pl",
+      "relationships": {
+        "type": "supplier",
+        "products": ["PROD_003", "PROD_016", "PROD_028"]
+      }
+    },
+    {
+      "id": "SUP_003",
+      "name": "Bosch",
+      "country": "Niemcy",
+      "contact": "info@bosch.pl",
+      "relationships": {
+        "type": "supplier",
+        "products": ["PROD_006", "PROD_009", "PROD_012", "PROD_017", "PROD_020", "PROD_021", "PROD_024", "PROD_026", "PROD_030", "PROD_031"]
+      }
+    },
+    {
+      "id": "SUP_004",
+      "name": "Makita",
+      "country": "Japonia",
+      "contact": "makita@makita.pl",
+      "relationships": {
+        "type": "supplier",
+        "products": ["PROD_007", "PROD_014", "PROD_022"]
+      }
+    },
+    {
+      "id": "SUP_005",
+      "name": "Ceresit",
+      "country": "Niemcy",
+      "contact": "ceresit@henkel.com",
+      "relationships": {
+        "type": "supplier",
+        "products": ["PROD_008", "PROD_010", "PROD_013", "PROD_015", "PROD_019", "PROD_025", "PROD_027", "PROD_029", "PROD_032"]
+      }
+    }
+  ],
+  "products": [
+    {
+      "id": "PROD_001",
+      "name": "Farba akrylowa biała matowa 10L",
+      "code": "FAR-AKR-10L-BIA-MAT",
+      "category": "Farby i Lakiery",
+      "subcategory": "Farby ścienne",
+      "brand": "Dekoral",
+      "price": 89.99,
+      "quantity": 25,
+      "unit": "szt",
+      "description": "Wysokiej jakości farba akrylowa do wnętrz",
+      "technical_specs": {
+        "volume": "10L",
+        "color": "biały",
+        "finish": "matowy",
+        "coverage": "12-14 m²/L",
+        "drying_time": "2h"
+      },
+      "certifications": ["CE", "VOC"],
+      "supplier_id": "SUP_001",
+      "last_updated": "2024-01-15"
+    },
+    {
+      "id": "PROD_002",
+      "name": "Farba akrylowa biała półmat 10L",
+      "code": "FAR-AKR-10L-BIA-PMAT",
+      "category": "Farby i Lakiery",
+      "subcategory": "Farby ścienne",
+      "brand": "Dekoral",
+      "price": 94.99,
+      "quantity": 18,
+      "unit": "szt",
+      "description": "Farba akrylowa o wykończeniu półmatowym",
+      "technical_specs": {
+        "volume": "10L",
+        "color": "biały",
+        "finish": "półmatowy",
+        "coverage": "12-14 m²/L",
+        "drying_time": "2h"
+      },
+      "certifications": ["CE", "VOC"],
+      "supplier_id": "SUP_001",
+      "last_updated": "2024-01-15"
+    },
+    {
+      "id": "PROD_003",
+      "name": "Farba lateksowa biała 10L Premium",
+      "code": "FAR-LAT-10L-BIA-PREM",
+      "category": "Farby i Lakiery",
+      "subcategory": "Farby ścienne",
+      "brand": "Śnieżka",
+      "price": 85.00,
+      "quantity": 20,
+      "unit": "szt",
+      "description": "Lateksowa farba premium do wnętrz",
+      "technical_specs": {
+        "volume": "10L",
+        "color": "biały",
+        "finish": "satynowy",
+        "coverage": "10-12 m²/L",
+        "drying_time": "4h"
+      },
+      "certifications": ["CE", "Ecolabel"],
+      "supplier_id": "SUP_002",
+      "last_updated": "2024-01-10"
+    },
+    {
+      "id": "PROD_004",
+      "name": "Farba akrylowa krem 5L",
+      "code": "FAR-AKR-5L-KREM",
+      "category": "Farby i Lakiery",
+      "subcategory": "Farby ścienne",
+      "brand": "Dekoral",
+      "price": 49.99,
+      "quantity": 35,
+      "unit": "szt",
+      "description": "Farba akrylowa w kolorze kremowym",
+      "technical_specs": {
+        "volume": "5L",
+        "color": "krem",
+        "finish": "matowy",
+        "coverage": "12-14 m²/L",
+        "drying_time": "2h"
+      },
+      "certifications": ["CE"],
+      "supplier_id": "SUP_001",
+      "last_updated": "2024-01-12"
+    },
+    {
+      "id": "PROD_005",
+      "name": "Lakier do drewna bezbarwny 2.5L",
+      "code": "LAK-DRE-2.5L-BEZB",
+      "category": "Farby i Lakiery",
+      "subcategory": "Lakiery",
+      "brand": "Dekoral",
+      "price": 65.99,
+      "quantity": 15,
+      "unit": "szt",
+      "description": "Lakier akrylowy do drewna wewnętrznego",
+      "technical_specs": {
+        "volume": "2.5L",
+        "color": "bezbarwny",
+        "finish": "połysk",
+        "coverage": "10-12 m²/L",
+        "drying_time": "6h"
+      },
+      "certifications": ["CE"],
+      "supplier_id": "SUP_001",
+      "last_updated": "2024-01-08"
+    },
+    {
+      "id": "PROD_006",
+      "name": "Wiertarka udarowa 18V Li-Ion",
+      "code": "WIE-UDA-18V-BOSCH",
+      "category": "Narzędzia",
+      "subcategory": "Narzędzia elektryczne",
+      "brand": "Bosch",
+      "price": 299.99,
+      "quantity": 12,
+      "unit": "szt",
+      "description": "Profesjonalna wiertarka udarowa z akumulatorem",
+      "technical_specs": {
+        "voltage": "18V",
+        "battery_type": "Li-Ion",
+        "max_torque": "60Nm",
+        "chuck_size": "13mm",
+        "weight": "1.8kg"
+      },
+      "certifications": ["CE", "GS"],
+      "supplier_id": "SUP_003",
+      "last_updated": "2024-01-20"
+    },
+    {
+      "id": "PROD_007",
+      "name": "Szlifierka kątowa 125mm 850W",
+      "code": "SZL-KAT-125-850W",
+      "category": "Narzędzia",
+      "subcategory": "Narzędzia elektryczne",
+      "brand": "Makita",
+      "price": 189.99,
+      "quantity": 8,
+      "unit": "szt",
+      "description": "Szlifierka kątowa do zastosowań uniwersalnych",
+      "technical_specs": {
+        "power": "850W",
+        "disc_diameter": "125mm",
+        "speed": "11000 rpm",
+        "weight": "1.9kg"
+      },
+      "certifications": ["CE"],
+      "supplier_id": "SUP_004",
+      "last_updated": "2024-01-18"
+    },
+    {
+      "id": "PROD_008",
+      "name": "Klej do płytek C1 25kg",
+      "code": "KLE-PLY-C1-25KG",
+      "category": "Materiały budowlane",
+      "subcategory": "Kleje",
+      "brand": "Ceresit",
+      "price": 18.99,
+      "quantity": 45,
+      "unit": "worek",
+      "description": "Klej cementowy do płytek ceramicznych",
+      "technical_specs": {
+        "weight": "25kg",
+        "class": "C1",
+        "coverage": "4-6 m²",
+        "pot_life": "3h",
+        "temperature_range": "+5°C do +30°C"
+      },
+      "certifications": ["CE", "EN 12004"],
+      "supplier_id": "SUP_005",
+      "last_updated": "2024-01-05"
+    },
+    {
+      "id": "PROD_009",
+      "name": "Żarówka LED E27 10W 4000K",
+      "code": "ZAR-LED-E27-10W-4000K",
+      "category": "Elektryka",
+      "subcategory": "Oświetlenie",
+      "brand": "Philips",
+      "price": 12.99,
+      "quantity": 120,
+      "unit": "szt",
+      "description": "Energooszczędna żarówka LED",
+      "technical_specs": {
+        "power": "10W",
+        "equivalent": "75W",
+        "color_temp": "4000K",
+        "luminous_flux": "1055lm",
+        "lifetime": "15000h"
+      },
+      "certifications": ["CE", "Energy Star"],
+      "supplier_id": "SUP_003",
+      "last_updated": "2024-01-25"
+    },
+    {
+      "id": "PROD_010",
+      "name": "Rura PVC 110mm 3m",
+      "code": "RUR-PVC-110-3M",
+      "category": "Hydraulika",
+      "subcategory": "Rury",
+      "brand": "Wavin",
+      "price": 25.99,
+      "quantity": 50,
+      "unit": "szt",
+      "description": "Rura kanalizacyjna PVC",
+      "technical_specs": {
+        "diameter": "110mm",
+        "length": "3m",
+        "material": "PVC",
+        "pressure_class": "SN4",
+        "color": "pomarańczowy"
+      },
+      "certifications": ["CE", "PZH"],
+      "supplier_id": "SUP_005",
+      "last_updated": "2024-01-14"
+    },
+    {
+      "id": "PROD_011",
+      "name": "Farba akrylowa szara 10L",
+      "code": "FAR-AKR-10L-SZA",
+      "category": "Farby i Lakiery",
+      "subcategory": "Farby ścienne",
+      "brand": "Dekoral",
+      "price": 89.99,
+      "quantity": 15,
+      "unit": "szt",
+      "description": "Farba akrylowa w kolorze szarym",
+      "technical_specs": {
+        "volume": "10L",
+        "color": "szary",
+        "finish": "matowy",
+        "coverage": "12-14 m²/L",
+        "drying_time": "2h"
+      },
+      "certifications": ["CE", "VOC"],
+      "supplier_id": "SUP_001",
+      "last_updated": "2024-01-15"
+    },
+    {
+      "id": "PROD_012",
+      "name": "Młotek stalowy 500g",
+      "code": "MLO-STA-500G",
+      "category": "Narzędzia",
+      "subcategory": "Narzędzia ręczne",
+      "brand": "Stanley",
+      "price": 35.99,
+      "quantity": 28,
+      "unit": "szt",
+      "description": "Młotek z trzonkiem z włókna szklanego",
+      "technical_specs": {
+        "weight": "500g",
+        "handle_material": "włókno szklane",
+        "head_material": "stal",
+        "length": "320mm"
+      },
+      "certifications": ["CE"],
+      "supplier_id": "SUP_003",
+      "last_updated": "2024-01-22"
+    },
+    {
+      "id": "PROD_013",
+      "name": "Cement portlandzki CEM I 42.5R 25kg",
+      "code": "CEM-POR-42.5R-25KG",
+      "category": "Materiały budowlane",
+      "subcategory": "Cement",
+      "brand": "Lafarge",
+      "price": 16.50,
+      "quantity": 80,
+      "unit": "worek",
+      "description": "Cement wysokiej wytrzymałości",
+      "technical_specs": {
+        "weight": "25kg",
+        "class": "CEM I 42.5R",
+        "compressive_strength": "42.5 MPa",
+        "setting_time": "2-4h"
+      },
+      "certifications": ["CE", "EN 197-1"],
+      "supplier_id": "SUP_005",
+      "last_updated": "2024-01-10"
+    },
+    {
+      "id": "PROD_014",
+      "name": "Kabel elektryczny YDY 3x2.5mm² 100m",
+      "code": "KAB-YDY-3x2.5-100M",
+      "category": "Elektryka",
+      "subcategory": "Kable",
+      "brand": "Tele-Fonika",
+      "price": 185.99,
+      "quantity": 15,
+      "unit": "bęben",
+      "description": "Kabel instalacyjny mieszkaniowy",
+      "technical_specs": {
+        "type": "YDY",
+        "cross_section": "3x2.5mm²",
+        "length": "100m",
+        "voltage": "450/750V",
+        "color": "czarny"
+      },
+      "certifications": ["CE", "SEP"],
+      "supplier_id": "SUP_004",
+      "last_updated": "2024-01-16"
+    },
+    {
+      "id": "PROD_015",
+      "name": "Zawór kulowy 1/2\" mosiężny",
+      "code": "ZAW-KUL-1/2-MOS",
+      "category": "Hydraulika",
+      "subcategory": "Armatura",
+      "brand": "Ferro",
+      "price": 22.99,
+      "quantity": 65,
+      "unit": "szt",
+      "description": "Zawór kulowy z gwintem wewnętrznym",
+      "technical_specs": {
+        "size": "1/2\"",
+        "material": "mosiądz",
+        "thread": "wewnętrzny",
+        "pressure": "16 bar",
+        "temperature": "120°C"
+      },
+      "certifications": ["CE", "PZH"],
+      "supplier_id": "SUP_005",
+      "last_updated": "2024-01-12"
+    },
+    {
+      "id": "PROD_016",
+      "name": "Farba lateksowa krem 5L",
+      "code": "FAR-LAT-5L-KREM",
+      "category": "Farby i Lakiery",
+      "subcategory": "Farby ścienne",
+      "brand": "Śnieżka",
+      "price": 45.99,
+      "quantity": 22,
+      "unit": "szt",
+      "description": "Farba lateksowa w kolorze kremowym",
+      "technical_specs": {
+        "volume": "5L",
+        "color": "krem",
+        "finish": "satynowy",
+        "coverage": "10-12 m²/L",
+        "drying_time": "4h"
+      },
+      "certifications": ["CE"],
+      "supplier_id": "SUP_002",
+      "last_updated": "2024-01-18"
+    },
+    {
+      "id": "PROD_017",
+      "name": "Wkrętarka akumulatorowa 12V",
+      "code": "WKR-AKU-12V-BOSCH",
+      "category": "Narzędzia",
+      "subcategory": "Narzędzia elektryczne",
+      "brand": "Bosch",
+      "price": 149.99,
+      "quantity": 18,
+      "unit": "szt",
+      "description": "Kompaktowa wkrętarka do prac domowych",
+      "technical_specs": {
+        "voltage": "12V",
+        "battery_type": "Li-Ion",
+        "max_torque": "30Nm",
+        "chuck_size": "10mm",
+        "weight": "1.1kg"
+      },
+      "certifications": ["CE", "GS"],
+      "supplier_id": "SUP_003",
+      "last_updated": "2024-01-20"
+    },
+    {
+      "id": "PROD_018",
+      "name": "Grunt głęboko penetrujący 5L",
+      "code": "GRU-PEN-5L",
+      "category": "Farby i Lakiery",
+      "subcategory": "Grunty",
+      "brand": "Dekoral",
+      "price": 32.99,
+      "quantity": 30,
+      "unit": "szt",
+      "description": "Grunt penetrujący pod farby",
+      "technical_specs": {
+        "volume": "5L",
+        "type": "penetrujący",
+        "coverage": "8-12 m²/L",
+        "drying_time": "4h",
+        "dilution": "5-10%"
+      },
+      "certifications": ["CE"],
+      "supplier_id": "SUP_001",
+      "last_updated": "2024-01-14"
+    },
+    {
+      "id": "PROD_019",
+      "name": "Płytka podłogowa 60x60 szara",
+      "code": "PLY-POD-60x60-SZA",
+      "category": "Materiały budowlane",
+      "subcategory": "Płytki",
+      "brand": "Paradyż",
+      "price": 45.99,
+      "quantity": 85,
+      "unit": "m²",
+      "description": "Płytka gresowa matowa",
+      "technical_specs": {
+        "size": "60x60cm",
+        "thickness": "9.5mm",
+        "color": "szary",
+        "finish": "matowy",
+        "slip_resistance": "R10"
+      },
+      "certifications": ["CE", "EN 14411"],
+      "supplier_id": "SUP_005",
+      "last_updated": "2024-01-11"
+    },
+    {
+      "id": "PROD_020",
+      "name": "Gniazdko podwójne z uziemieniem",
+      "code": "GNI-POD-UZ-BIA",
+      "category": "Elektryka",
+      "subcategory": "Gniazdka",
+      "brand": "Legrand",
+      "price": 18.99,
+      "quantity": 95,
+      "unit": "szt",
+      "description": "Gniazdko podwójne białe z bolcem",
+      "technical_specs": {
+        "type": "podwójne",
+        "voltage": "230V",
+        "current": "16A",
+        "color": "biały",
+        "protection": "IP20"
+      },
+      "certifications": ["CE", "VDE"],
+      "supplier_id": "SUP_003",
+      "last_updated": "2024-01-23"
+    },
+    {
+      "id": "PROD_021",
+      "name": "Klucz płaski 17mm",
+      "code": "KLU-PLA-17MM",
+      "category": "Narzędzia",
+      "subcategory": "Narzędzia ręczne",
+      "brand": "Stanley",
+      "price": 12.99,
+      "quantity": 45,
+      "unit": "szt",
+      "description": "Klucz płaski chromowany",
+      "technical_specs": {
+        "size": "17mm",
+        "material": "stal chromowana",
+        "length": "210mm",
+        "weight": "110g"
+      },
+      "certifications": ["DIN 3113"],
+      "supplier_id": "SUP_003",
+      "last_updated": "2024-01-19"
+    },
+    {
+      "id": "PROD_022",
+      "name": "Rura miedziana 15mm 5m",
+      "code": "RUR-MIE-15MM-5M",
+      "category": "Hydraulika",
+      "subcategory": "Rury",
+      "brand": "KME",
+      "price": 85.99,
+      "quantity": 25,
+      "unit": "szt",
+      "description": "Rura miedziana do instalacji wody",
+      "technical_specs": {
+        "diameter": "15mm",
+        "length": "5m",
+        "material": "miedź",
+        "wall_thickness": "1mm",
+        "pressure": "40 bar"
+      },
+      "certifications": ["CE", "EN 1057"],
+      "supplier_id": "SUP_004",
+      "last_updated": "2024-01-17"
+    },
+    {
+      "id": "PROD_023",
+      "name": "Farba do drewna brązowa 2.5L",
+      "code": "FAR-DRE-2.5L-BRA",
+      "category": "Farby i Lakiery",
+      "subcategory": "Farby do drewna",
+      "brand": "Dekoral",
+      "price": 55.99,
+      "quantity": 18,
+      "unit": "szt",
+      "description": "Farba olejno-żywiczna do drewna",
+      "technical_specs": {
+        "volume": "2.5L",
+        "color": "brązowy",
+        "base": "olejno-żywiczna",
+        "coverage": "8-10 m²/L",
+        "drying_time": "8h"
+      },
+      "certifications": ["CE"],
+      "supplier_id": "SUP_001",
+      "last_updated": "2024-01-13"
+    },
+    {
+      "id": "PROD_024",
+      "name": "Taśma LED 5m 12V ciepła",
+      "code": "TAS-LED-5M-12V-CIE",
+      "category": "Elektryka",
+      "subcategory": "Oświetlenie",
+      "brand": "Philips",
+      "price": 89.99,
+      "quantity": 35,
+      "unit": "szt",
+      "description": "Taśma LED samoprzylepna",
+      "technical_specs": {
+        "length": "5m",
+        "voltage": "12V",
+        "power": "24W",
+        "color_temp": "3000K",
+        "ip_rating": "IP20"
+      },
+      "certifications": ["CE", "RoHS"],
+      "supplier_id": "SUP_003",
+      "last_updated": "2024-01-21"
+    },
+    {
+      "id": "PROD_025",
+      "name": "Izolacja styropianowa 10cm",
+      "code": "IZO-STY-10CM",
+      "category": "Materiały budowlane",
+      "subcategory": "Izolacje",
+      "brand": "Austrotherm",
+      "price": 28.99,
+      "quantity": 60,
+      "unit": "m²",
+      "description": "Płyta styropianowa do ocieplenia",
+      "technical_specs": {
+        "thickness": "10cm",
+        "thermal_conductivity": "0.031 W/mK",
+        "density": "20 kg/m³",
+        "size": "100x50cm",
+        "flame_class": "E"
+      },
+      "certifications": ["CE", "ITB"],
+      "supplier_id": "SUP_005",
+      "last_updated": "2024-01-09"
+    },
+    {
+      "id": "PROD_026",
+      "name": "Piła tarczowa 190mm 24T",
+      "code": "PIL-TAR-190-24T",
+      "category": "Narzędzia",
+      "subcategory": "Akcesoria",
+      "brand": "Bosch",
+      "price": 45.99,
+      "quantity": 25,
+      "unit": "szt",
+      "description": "Tarcza do drewna 24 zęby",
+      "technical_specs": {
+        "diameter": "190mm",
+        "teeth": "24",
+        "bore": "30mm",
+        "material": "HW/CT",
+        "max_rpm": "9000"
+      },
+      "certifications": ["CE"],
+      "supplier_id": "SUP_003",
+      "last_updated": "2024-01-20"
+    },
+    {
+      "id": "PROD_027",
+      "name": "Syfon umywalkowy 32mm",
+      "code": "SYF-UMY-32MM",
+      "category": "Hydraulika",
+      "subcategory": "Armatura",
+      "brand": "Ferro",
+      "price": 15.99,
+      "quantity": 40,
+      "unit": "szt",
+      "description": "Syfon butelkowy chromowany",
+      "technical_specs": {
+        "diameter": "32mm",
+        "material": "mosiądz chromowany",
+        "type": "butelkowy",
+        "height": "300mm"
+      },
+      "certifications": ["CE"],
+      "supplier_id": "SUP_005",
+      "last_updated": "2024-01-15"
+    },
+    {
+      "id": "PROD_028",
+      "name": "Farba akrylowa niebieska 5L",
+      "code": "FAR-AKR-5L-NIE",
+      "category": "Farby i Lakiery",
+      "subcategory": "Farby ścienne",
+      "brand": "Śnieżka",
+      "price": 52.99,
+      "quantity": 12,
+      "unit": "szt",
+      "description": "Farba akrylowa w kolorze niebieskim",
+      "technical_specs": {
+        "volume": "5L",
+        "color": "niebieski",
+        "finish": "matowy",
+        "coverage": "10-12 m²/L",
+        "drying_time": "4h"
+      },
+      "certifications": ["CE"],
+      "supplier_id": "SUP_002",
+      "last_updated": "2024-01-16"
+    },
+    {
+      "id": "PROD_029",
+      "name": "Klej do tapet 200g",
+      "code": "KLE-TAP-200G",
+      "category": "Materiały budowlane",
+      "subcategory": "Kleje",
+      "brand": "Quelyd",
+      "price": 8.99,
+      "quantity": 85,
+      "unit": "opakowanie",
+      "description": "Klej w proszku do tapet",
+      "technical_specs": {
+        "weight": "200g",
+        "coverage": "35-40 m²",
+        "preparation": "mieszać z wodą",
+        "pot_life": "8h"
+      },
+      "certifications": ["CE"],
+      "supplier_id": "SUP_005",
+      "last_updated": "2024-01-08"
+    },
+    {
+      "id": "PROD_030",
+      "name": "Żarówka LED GU10 5W 3000K",
+      "code": "ZAR-LED-GU10-5W-3000K",
+      "category": "Elektryka",
+      "subcategory": "Oświetlenie",
+      "brand": "Osram",
+      "price": 18.99,
+      "quantity": 75,
+      "unit": "szt",
+      "description": "Żarówka LED halogenowa",
+      "technical_specs": {
+        "power": "5W",
+        "equivalent": "50W",
+        "color_temp": "3000K",
+        "luminous_flux": "350lm",
+        "beam_angle": "36°"
+      },
+      "certifications": ["CE", "Energy Star"],
+      "supplier_id": "SUP_003",
+      "last_updated": "2024-01-24"
+    },
+    {
+      "id": "PROD_031",
+      "name": "Wkrętak krzyżakowy PH2",
+      "code": "WKR-KRZ-PH2",
+      "category": "Narzędzia",
+      "subcategory": "Narzędzia ręczne",
+      "brand": "Stanley",
+      "price": 8.99,
+      "quantity": 55,
+      "unit": "szt",
+      "description": "Wkrętak krzyżakowy z uchwytem ergonomicznym",
+      "technical_specs": {
+        "tip": "PH2",
+        "length": "125mm",
+        "handle": "ergonomiczny",
+        "material": "stal chromowana"
+      },
+      "certifications": ["CE"],
+      "supplier_id": "SUP_003",
+      "last_updated": "2024-01-19"
+    },
+    {
+      "id": "PROD_032",
+      "name": "Cement szybkotwardniejący 25kg",
+      "code": "CEM-SZY-25KG",
+      "category": "Materiały budowlane",
+      "subcategory": "Cement",
+      "brand": "Lafarge",
+      "price": 22.99,
+      "quantity": 35,
+      "unit": "worek",
+      "description": "Cement szybkowiążący do napraw",
+      "technical_specs": {
+        "weight": "25kg",
+        "type": "szybkotwardniejący",
+        "setting_time": "15-30 min",
+        "final_strength": "30 MPa"
+      },
+      "certifications": ["CE"],
+      "supplier_id": "SUP_005",
+      "last_updated": "2024-01-12"
+    },
+    {
+      "id": "PROD_033",
+      "name": "Przełącznik pojedynczy biały",
+      "code": "PRZ-POJ-BIA",
+      "category": "Elektryka",
+      "subcategory": "Gniazdka",
+      "brand": "Legrand",
+      "price": 12.99,
+      "quantity": 120,
+      "unit": "szt",
+      "description": "Przełącznik światła pojedynczy",
+      "technical_specs": {
+        "type": "pojedynczy",
+        "voltage": "230V",
+        "current": "10A",
+        "color": "biały",
+        "mounting": "podtynkowy"
+      },
+      "certifications": ["CE", "VDE"],
+      "supplier_id": "SUP_003",
+      "last_updated": "2024-01-23"
+    },
+    {
+      "id": "PROD_034",
+      "name": "Lakier do metalu czarny 1L",
+      "code": "LAK-MET-1L-CZA",
+      "category": "Farby i Lakiery",
+      "subcategory": "Lakiery",
+      "brand": "Dekoral",
+      "price": 25.99,
+      "quantity": 28,
+      "unit": "szt",
+      "description": "Lakier antykorozyjny do metalu",
+      "technical_specs": {
+        "volume": "1L",
+        "color": "czarny",
+        "base": "alkidowa",
+        "coverage": "8-10 m²/L",
+        "drying_time": "6h"
+      },
+      "certifications": ["CE"],
+      "supplier_id": "SUP_001",
+      "last_updated": "2024-01-14"
+    },
+    {
+      "id": "PROD_035",
+      "name": "Miarka taśmowa 5m",
+      "code": "MIA-TAS-5M",
+      "category": "Narzędzia",
+      "subcategory": "Narzędzia ręczne",
+      "brand": "Stanley",
+      "price": 22.99,
+      "quantity": 42,
+      "unit": "szt",
+      "description": "Miarka stalowa z zatrzaskiem",
+      "technical_specs": {
+        "length": "5m",
+        "width": "25mm",
+        "housing": "plastikowe",
+        "blade": "stal",
+        "accuracy": "±1mm/m"
+      },
+      "certifications": ["CE", "EEC Class II"],
+      "supplier_id": "SUP_003",
+      "last_updated": "2024-01-21"
+    },
+    {
+      "id": "PROD_036",
+      "name": "Rura PE-X 16x2mm 100m",
+      "code": "RUR-PEX-16x2-100M",
+      "category": "Hydraulika",
+      "subcategory": "Rury",
+      "brand": "Rehau",
+      "price": 135.99,
+      "quantity": 18,
+      "unit": "zwój",
+      "description": "Rura PE-X do ogrzewania podłogowego",
+      "technical_specs": {
+        "diameter": "16x2mm",
+        "length": "100m",
+        "material": "PE-X",
+        "pressure": "10 bar",
+        "temperature": "95°C"
+      },
+      "certifications": ["CE", "EN ISO 15875"],
+      "supplier_id": "SUP_004",
+      "last_updated": "2024-01-17"
+    },
+    {
+      "id": "PROD_037",
+      "name": "Farba emulsyjna biała 15L",
+      "code": "FAR-EMU-15L-BIA",
+      "category": "Farby i Lakiery",
+      "subcategory": "Farby ścienne",
+      "brand": "Śnieżka",
+      "price": 109.99,
+      "quantity": 8,
+      "unit": "szt",
+      "description": "Farba emulsyjna ekonomiczna",
+      "technical_specs": {
+        "volume": "15L",
+        "color": "biały",
+        "finish": "matowy",
+        "coverage": "8-10 m²/L",
+        "drying_time": "2h"
+      },
+      "certifications": ["CE"],
+      "supplier_id": "SUP_002",
+      "last_updated": "2024-01-10"
+    },
+    {
+      "id": "PROD_038",
+      "name": "Reflektor LED 30W IP65",
+      "code": "REF-LED-30W-IP65",
+      "category": "Elektryka",
+      "subcategory": "Oświetlenie",
+      "brand": "Philips",
+      "price": 85.99,
+      "quantity": 22,
+      "unit": "szt",
+      "description": "Reflektor zewnętrzny wodoodporny",
+      "technical_specs": {
+        "power": "30W",
+        "luminous_flux": "3000lm",
+        "color_temp": "4000K",
+        "ip_rating": "IP65",
+        "beam_angle": "120°"
+      },
+      "certifications": ["CE", "IP65"],
+      "supplier_id": "SUP_003",
+      "last_updated": "2024-01-22"
+    },
+    {
+      "id": "PROD_039",
+      "name": "Gips szpachlowy 20kg",
+      "code": "GIP-SZP-20KG",
+      "category": "Materiały budowlane",
+      "subcategory": "Kleje",
+      "brand": "Knauf",
+      "price": 14.99,
+      "quantity": 65,
+      "unit": "worek",
+      "description": "Gips do szpachlowania ścian",
+      "technical_specs": {
+        "weight": "20kg",
+        "type": "szpachlowy",
+        "coverage": "15-20 m²",
+        "pot_life": "45 min",
+        "grain_size": "0.3mm"
+      },
+      "certifications": ["CE", "EN 13279"],
+      "supplier_id": "SUP_005",
+      "last_updated": "2024-01-11"
+    },
+    {
+      "id": "PROD_040",
+      "name": "Poziomnica aluminiowa 60cm",
+      "code": "POZ-ALU-60CM",
+      "category": "Narzędzia",
+      "subcategory": "Narzędzia ręczne",
+      "brand": "Stanley",
+      "price": 35.99,
+      "quantity": 38,
+      "unit": "szt",
+      "description": "Poziomnica z 3 libellami",
+      "technical_specs": {
+        "length": "60cm",
+        "material": "aluminium",
+        "vials": "3",
+        "accuracy": "0.5mm/m",
+        "weight": "450g"
+      },
+      "certifications": ["DIN 877"],
+      "supplier_id": "SUP_003",
+      "last_updated": "2024-01-19"
+    },
+    {
+      "id": "PROD_041",
+      "name": "Kolano PP 90° 32mm",
+      "code": "KOL-PP-90-32MM",
+      "category": "Hydraulika",
+      "subcategory": "Armatura",
+      "brand": "Wavin",
+      "price": 4.99,
+      "quantity": 150,
+      "unit": "szt",
+      "description": "Kolano polipropylenowe 90 stopni",
+      "technical_specs": {
+        "angle": "90°",
+        "diameter": "32mm",
+        "material": "PP",
+        "connection": "spawanie",
+        "pressure": "16 bar"
+      },
+      "certifications": ["CE"],
+      "supplier_id": "SUP_005",
+      "last_updated": "2024-01-15"
+    },
+    {
+      "id": "PROD_042",
+      "name": "Farba akrylowa zielona 2.5L",
+      "code": "FAR-AKR-2.5L-ZIE",
+      "category": "Farby i Lakiery",
+      "subcategory": "Farby ścienne",
+      "brand": "Dekoral",
+      "price": 32.99,
+      "quantity": 25,
+      "unit": "szt",
+      "description": "Farba akrylowa w kolorze zielonym",
+      "technical_specs": {
+        "volume": "2.5L",
+        "color": "zielony",
+        "finish": "matowy",
+        "coverage": "12-14 m²/L",
+        "drying_time": "2h"
+      },
+      "certifications": ["CE"],
+      "supplier_id": "SUP_001",
+      "last_updated": "2024-01-13"
+    },
+    {
+      "id": "PROD_043",
+      "name": "Żarówka halogenowa G9 40W",
+      "code": "ZAR-HAL-G9-40W",
+      "category": "Elektryka",
+      "subcategory": "Oświetlenie",
+      "brand": "Osram",
+      "price": 6.99,
+      "quantity": 95,
+      "unit": "szt",
+      "description": "Żarówka halogenowa kapsułkowa",
+      "technical_specs": {
+        "power": "40W",
+        "base": "G9",
+        "voltage": "230V",
+        "luminous_flux": "630lm",
+        "lifetime": "2000h"
+      },
+      "certifications": ["CE"],
+      "supplier_id": "SUP_003",
+      "last_updated": "2024-01-24"
+    },
+    {
+      "id": "PROD_044",
+      "name": "Klucz oczkowy 13mm",
+      "code": "KLU-OCZ-13MM",
+      "category": "Narzędzia",
+      "subcategory": "Narzędzia ręczne",
+      "brand": "Makita",
+      "price": 15.99,
+      "quantity": 52,
+      "unit": "szt",
+      "description": "Klucz oczkowy chromowany",
+      "technical_specs": {
+        "size": "13mm",
+        "material": "stal chromowana",
+        "length": "180mm",
+        "weight": "85g"
+      },
+      "certifications": ["DIN 838"],
+      "supplier_id": "SUP_004",
+      "last_updated": "2024-01-18"
+    },
+    {
+      "id": "PROD_045",
+      "name": "Woś klejący do płytek 25kg",
+      "code": "WOS-KLE-PLY-25KG",
+      "category": "Materiały budowlane",
+      "subcategory": "Kleje",
+      "brand": "Ceresit",
+      "price": 25.99,
+      "quantity": 42,
+      "unit": "worek",
+      "description": "Klej elastyczny do płytek C2T",
+      "technical_specs": {
+        "weight": "25kg",
+        "class": "C2T",
+        "coverage": "3-5 m²",
+        "pot_life": "4h",
+        "flexibility": "elastyczny"
+      },
+      "certifications": ["CE", "EN 12004"],
+      "supplier_id": "SUP_005",
+      "last_updated": "2024-01-06"
+    },
+    {
+      "id": "PROD_046",
+      "name": "Przewód YDYp 3x1.5mm² 50m",
+      "code": "PRZ-YDYp-3x1.5-50M",
+      "category": "Elektryka",
+      "subcategory": "Kable",
+      "brand": "Tele-Fonika",
+      "price": 65.99,
+      "quantity": 28,
+      "unit": "bęben",
+      "description": "Przewód płaski do instalacji",
+      "technical_specs": {
+        "type": "YDYp",
+        "cross_section": "3x1.5mm²",
+        "length": "50m",
+        "voltage": "300/500V",
+        "shape": "płaski"
+      },
+      "certifications": ["CE", "SEP"],
+      "supplier_id": "SUP_004",
+      "last_updated": "2024-01-16"
+    },
+    {
+      "id": "PROD_047",
+      "name": "Grunt pod farby akrylowe 10L",
+      "code": "GRU-AKR-10L",
+      "category": "Farby i Lakiery",
+      "subcategory": "Grunty",
+      "brand": "Śnieżka",
+      "price": 45.99,
+      "quantity": 15,
+      "unit": "szt",
+      "description": "Grunt zwiększający przyczepność farb",
+      "technical_specs": {
+        "volume": "10L",
+        "type": "akrylowy",
+        "coverage": "10-14 m²/L",
+        "drying_time": "4h",
+        "color": "biały"
+      },
+      "certifications": ["CE"],
+      "supplier_id": "SUP_002",
+      "last_updated": "2024-01-12"
+    },
+    {
+      "id": "PROD_048",
+      "name": "Zawór termostatyczny 1/2\"",
+      "code": "ZAW-TER-1/2",
+      "category": "Hydraulika",
+      "subcategory": "Armatura",
+      "brand": "Ferro",
+      "price": 89.99,
+      "quantity": 25,
+      "unit": "szt",
+      "description": "Zawór termostatyczny do grzejnika",
+      "technical_specs": {
+        "size": "1/2\"",
+        "type": "termostatyczny",
+        "material": "mosiądz nikielowany",
+        "temperature_range": "6-28°C",
+        "kvs": "0.5"
+      },
+      "certifications": ["CE", "EN 215"],
+      "supplier_id": "SUP_005",
+      "last_updated": "2024-01-14"
+    },
+    {
+      "id": "PROD_049",
+      "name": "Płytka ścienna 25x40 biała",
+      "code": "PLY-SCI-25x40-BIA",
+      "category": "Materiały budowlane",
+      "subcategory": "Płytki",
+      "brand": "Paradyż",
+      "price": 25.99,
+      "quantity": 120,
+      "unit": "m²",
+      "description": "Płytka ceramiczna błyszcząca",
+      "technical_specs": {
+        "size": "25x40cm",
+        "thickness": "7mm",
+        "color": "biały",
+        "finish": "błyszczący",
+        "water_absorption": "<10%"
+      },
+      "certifications": ["CE", "EN 14411"],
+      "supplier_id": "SUP_005",
+      "last_updated": "2024-01-09"
+    },
+    {
+      "id": "PROD_050",
+      "name": "Pistolet do silikonu",
+      "code": "PIS-SIL",
+      "category": "Narzędzia",
+      "subcategory": "Narzędzia ręczne",
+      "brand": "Stanley",
+      "price": 18.99,
+      "quantity": 35,
+      "unit": "szt",
+      "description": "Pistolet do kartusz 310ml",
+      "technical_specs": {
+        "capacity": "310ml",
+        "material": "metal",
+        "type": "szkieletowy",
+        "ratio": "12:1"
+      },
+      "certifications": ["CE"],
+      "supplier_id": "SUP_003",
+      "last_updated": "2024-01-20"
+    },
+    {
+      "id": "PROD_051",
+      "name": "Silikon sanitarny biały 280ml",
+      "code": "SIL-SAN-280ML-BIA",
+      "category": "Materiały budowlane",
+      "subcategory": "Kleje",
+      "brand": "Soudal",
+      "price": 12.99,
+      "quantity": 85,
+      "unit": "kartusz",
+      "description": "Silikon do łazienek i kuchni",
+      "technical_specs": {
+        "volume": "280ml",
+        "color": "biały",
+        "type": "acetat",
+        "temperature": "-40°C do +150°C",
+        "cure_time": "24h"
+      },
+      "certifications": ["CE"],
+      "supplier_id": "SUP_005",
+      "last_updated": "2024-01-10"
+    },
+    {
+      "id": "PROD_052",
+      "name": "Wełna mineralna 15cm 5m²",
+      "code": "WEL-MIN-15CM-5M2",
+      "category": "Materiały budowlane",
+      "subcategory": "Izolacje",
+      "brand": "Rockwool",
+      "price": 35.99,
+      "quantity": 45,
+      "unit": "opakowanie",
+      "description": "Wełna mineralna do ocieplenia",
+      "technical_specs": {
+        "thickness": "15cm",
+        "area": "5m²",
+        "thermal_conductivity": "0.037 W/mK",
+        "density": "40 kg/m³",
+        "fire_class": "A1"
+      },
+      "certifications": ["CE", "ITB"],
+      "supplier_id": "SUP_005",
+      "last_updated": "2024-01-07"
+    },
+    {
+      "id": "PROD_053",
+      "name": "Oprawa LED 36W 4000K 120cm",
+      "code": "OPR-LED-36W-120CM",
+      "category": "Elektryka",
+      "subcategory": "Oświetlenie",
+      "brand": "Philips",
+      "price": 125.99,
+      "quantity": 18,
+      "unit": "szt",
+      "description": "Oprawa liniowa do biur",
+      "technical_specs": {
+        "power": "36W",
+        "length": "120cm",
+        "color_temp": "4000K",
+        "luminous_flux": "3600lm",
+        "ip_rating": "IP20"
+      },
+      "certifications": ["CE", "ENEC"],
+      "supplier_id": "SUP_003",
+      "last_updated": "2024-01-25"
+    },
+    {
+      "id": "PROD_054",
+      "name": "Piła ręczna 450mm 7TPI",
+      "code": "PIL-REC-450-7TPI",
+      "category": "Narzędzia",
+      "subcategory": "Narzędzia ręczne",
+      "brand": "Stanley",
+      "price": 32.99,
+      "quantity": 25,
+      "unit": "szt",
+      "description": "Piła uniwersalna do drewna",
+      "technical_specs": {
+        "length": "450mm",
+        "tpi": "7",
+        "handle": "ergonomiczny",
+        "blade": "stal hartowana",
+        "cut_type": "uniwersalny"
+      },
+      "certifications": ["CE"],
+      "supplier_id": "SUP_003",
+      "last_updated": "2024-01-19"
+    },
+    {
+      "id": "PROD_055",
+      "name": "Kran jednouchwytowy umywalkowy",
+      "code": "KRA-JED-UMY",
+      "category": "Hydraulika",
+      "subcategory": "Armatura",
+      "brand": "Ferro",
+      "price": 125.99,
+      "quantity": 15,
+      "unit": "szt",
+      "description": "Bateria umywalkowa chromowana",
+      "technical_specs": {
+        "type": "jednouchwytowy",
+        "finish": "chrom",
+        "height": "150mm",
+        "aerator": "tak",
+        "installation": "na blat"
+      },
+      "certifications": ["CE", "WRAS"],
+      "supplier_id": "SUP_005",
+      "last_updated": "2024-01-13"
+    },
+    {
+      "id": "PROD_056",
+      "name": "Farba tablicowa czarna 1L",
+      "code": "FAR-TAB-1L-CZA",
+      "category": "Farby i Lakiery",
+      "subcategory": "Farby ścienne",
+      "brand": "Dekoral",
+      "price": 42.99,
+      "quantity": 18,
+      "unit": "szt",
+      "description": "Farba do pisania kredą",
+      "technical_specs": {
+        "volume": "1L",
+        "color": "czarny",
+        "finish": "matowy",
+        "coverage": "8-10 m²/L",
+        "special": "tablicowa"
+      },
+      "certifications": ["CE"],
+      "supplier_id": "SUP_001",
+      "last_updated": "2024-01-11"
+    },
+    {
+      "id": "PROD_057",
+      "name": "Rozdzielnica 12 modułów IP40",
+      "code": "ROZ-12M-IP40",
+      "category": "Elektryka",
+      "subcategory": "Rozdzielnie",
+      "brand": "Legrand",
+      "price": 45.99,
+      "quantity": 32,
+      "unit": "szt",
+      "description": "Rozdzielnica podtynkowa biała",
+      "technical_specs": {
+        "modules": "12",
+        "ip_rating": "IP40",
+        "color": "biały",
+        "installation": "podtynkowa",
+        "door": "przezroczysta"
+      },
+      "certifications": ["CE", "VDE"],
+      "supplier_id": "SUP_003",
+      "last_updated": "2024-01-22"
+    },
+    {
+      "id": "PROD_058",
+      "name": "Klucz nasadowy 19mm 1/2\"",
+      "code": "KLU-NAS-19MM-1/2",
+      "category": "Narzędzia",
+      "subcategory": "Narzędzia ręczne",
+      "brand": "Makita",
+      "price": 8.99,
+      "quantity": 65,
+      "unit": "szt",
+      "description": "Nasadka sześciokątna 1/2\"",
+      "technical_specs": {
+        "size": "19mm",
+        "drive": "1/2\"",
+        "material": "stal chromowana",
+        "length": "38mm",
+        "type": "sześciokątny"
+      },
+      "certifications": ["DIN 3124"],
+      "supplier_id": "SUP_004",
+      "last_updated": "2024-01-17"
+    },
+    {
+      "id": "PROD_059",
+      "name": "Zaprawa do fugowania 5kg szara",
+      "code": "ZAP-FUG-5KG-SZA",
+      "category": "Materiały budowlane",
+      "subcategory": "Kleje",
+      "brand": "Ceresit",
+      "price": 28.99,
+      "quantity": 55,
+      "unit": "opakowanie",
+      "description": "Zaprawa elastyczna do spoin",
+      "technical_specs": {
+        "weight": "5kg",
+        "color": "szary",
+        "joint_width": "1-6mm",
+        "type": "elastyczna",
+        "pot_life": "30 min"
+      },
+      "certifications": ["CE", "EN 13888"],
+      "supplier_id": "SUP_005",
+      "last_updated": "2024-01-08"
+    },
+    {
+      "id": "PROD_060",
+      "name": "Rura kanalizacyjna PVC 50mm 3m",
+      "code": "RUR-KAN-PVC-50-3M",
+      "category": "Hydraulika",
+      "subcategory": "Rury",
+      "brand": "Wavin",
+      "price": 15.99,
+      "quantity": 75,
+      "unit": "szt",
+      "description": "Rura wewnętrzna szara",
+      "technical_specs": {
+        "diameter": "50mm",
+        "length": "3m",
+        "material": "PVC",
+        "color": "szary",
+        "application": "kanalizacja wewnętrzna"
+      },
+      "certifications": ["CE", "EN 1329"],
+      "supplier_id": "SUP_005",
+      "last_updated": "2024-01-12"
+    }
+  ],
+  "product_relationships": [
+    {
+      "from": "PROD_001",
+      "to": "PROD_002",
+      "type": "ALTERNATIVE",
+      "similarity_score": 0.95,
+      "reason": "Ta sama marka, pojemność, różnica tylko w wykończeniu"
+    },
+    {
+      "from": "PROD_001",
+      "to": "PROD_003",
+      "type": "ALTERNATIVE",
+      "similarity_score": 0.85,
+      "reason": "Podobna pojemność i zastosowanie, inna marka"
+    },
+    {
+      "from": "PROD_001",
+      "to": "PROD_004",
+      "type": "SIMILAR_TO",
+      "similarity_score": 0.80,
+      "reason": "Ta sama marka i typ, różna pojemność i kolor"
+    },
+    {
+      "from": "PROD_001",
+      "to": "PROD_011",
+      "type": "ALTERNATIVE",
+      "similarity_score": 0.90,
+      "reason": "Ta sama marka i typ, inny kolor"
+    },
+    {
+      "from": "PROD_002",
+      "to": "PROD_003",
+      "type": "ALTERNATIVE",
+      "similarity_score": 0.85,
+      "reason": "Podobna pojemność i zastosowanie, różne marki"
+    },
+    {
+      "from": "PROD_003",
+      "to": "PROD_016",
+      "type": "ALTERNATIVE",
+      "similarity_score": 0.80,
+      "reason": "Ta sama marka, podobna pojemność, inny kolor"
+    },
+    {
+      "from": "PROD_004",
+      "to": "PROD_028",
+      "type": "ALTERNATIVE",
+      "similarity_score": 0.75,
+      "reason": "Podobna pojemność, inna marka i kolor"
+    },
+    {
+      "from": "PROD_005",
+      "to": "PROD_023",
+      "type": "COMPATIBLE_WITH",
+      "similarity_score": 0.85,
+      "reason": "Produkty do drewna tej samej marki, różne zastosowania"
+    },
+    {
+      "from": "PROD_006",
+      "to": "PROD_017",
+      "type": "COMPATIBLE_WITH",
+      "similarity_score": 0.70,
+      "reason": "Narzędzia tej samej marki, różne napięcia"
+    },
+    {
+      "from": "PROD_006",
+      "to": "PROD_026",
+      "type": "ACCESSORY_FOR",
+      "similarity_score": 0.90,
+      "reason": "Tarcza do narzędzia tej samej marki"
+    },
+    {
+      "from": "PROD_007",
+      "to": "PROD_026",
+      "type": "COMPATIBLE_WITH",
+      "similarity_score": 0.75,
+      "reason": "Tarcza pasująca do szlifierki"
+    },
+    {
+      "from": "PROD_008",
+      "to": "PROD_029",
+      "type": "COMPATIBLE_WITH",
+      "similarity_score": 0.65,
+      "reason": "Kleje do różnych zastosowań budowlanych"
+    },
+    {
+      "from": "PROD_009",
+      "to": "PROD_030",
+      "type": "ALTERNATIVE",
+      "similarity_score": 0.75,
+      "reason": "Żarówki LED różnych typów gwintów"
+    },
+    {
+      "from": "PROD_009",
+      "to": "PROD_024",
+      "type": "COMPATIBLE_WITH",
+      "similarity_score": 0.70,
+      "reason": "Oświetlenie LED różnych typów"
+    },
+    {
+      "from": "PROD_010",
+      "to": "PROD_022",
+      "type": "ALTERNATIVE",
+      "similarity_score": 0.60,
+      "reason": "Rury różnych materiałów do instalacji"
+    },
+    {
+      "from": "PROD_013",
+      "to": "PROD_032",
+      "type": "ALTERNATIVE",
+      "similarity_score": 0.85,
+      "reason": "Różne typy cementu tej samej marki"
+    },
+    {
+      "from": "PROD_014",
+      "to": "PROD_020",
+      "type": "COMPATIBLE_WITH",
+      "similarity_score": 0.80,
+      "reason": "Kabel i gniazdko do instalacji elektrycznej"
+    },
+    {
+      "from": "PROD_015",
+      "to": "PROD_027",
+      "type": "COMPATIBLE_WITH",
+      "similarity_score": 0.70,
+      "reason": "Armatura hydrauliczna różnych typów"
+    },
+    {
+      "from": "PROD_018",
+      "to": "PROD_001",
+      "type": "COMPATIBLE_WITH",
+      "similarity_score": 0.90,
+      "reason": "Grunt pod farbę"
+    },
+    {
+      "from": "PROD_019",
+      "to": "PROD_008",
+      "type": "COMPATIBLE_WITH",
+      "similarity_score": 0.85,
+      "reason": "Płytka i klej do montażu"
+    },
+    {
+      "from": "PROD_021",
+      "to": "PROD_031",
+      "type": "COMPATIBLE_WITH",
+      "similarity_score": 0.75,
+      "reason": "Narzędzia ręczne do montażu"
+    },
+    {
+      "from": "PROD_023",
+      "to": "PROD_005",
+      "type": "COMPATIBLE_WITH",
+      "similarity_score": 0.75,
+      "reason": "Produkty do drewna tej samej marki"
+    },
+    {
+      "from": "PROD_025",
+      "to": "PROD_013",
+      "type": "COMPATIBLE_WITH",
+      "similarity_score": 0.65,
+      "reason": "Izolacja i cement do prac budowlanych"
+    }
+  ],
+  "relationship_types": {
+    "ALTERNATIVE": {
+      "description": "Produkt może być użyty jako zamiennik",
+      "min_similarity": 0.75
+    },
+    "SIMILAR_TO": {
+      "description": "Produkt jest podobny, ale może wymagać dodatkowych modyfikacji",
+      "min_similarity": 0.60
+    },
+    "COMPATIBLE_WITH": {
+      "description": "Produkty mogą być używane razem",
+      "min_similarity": 0.65
+    },
+    "ACCESSORY_FOR": {
+      "description": "Produkt jest akcesorium do innego produktu",
+      "min_similarity": 0.80
+    }
+  }
+}
