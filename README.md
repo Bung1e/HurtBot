@@ -5,7 +5,7 @@ Inteligentny asystent klienta wykorzystujący techniki RAG (Retrieval-Augmented 
 ## Wymagania
 
 - Python 3.12+
-- pip
+- UV (Ultrafast Python Package Installer)
 
 ## Instalacja
 
@@ -15,9 +15,18 @@ git clone https://github.com/bung1e/hurtbot.git
 cd hurtbot
 ```
 
-2. Zainstaluj zależności:
+2. Zainstaluj UV (jeśli nie jest zainstalowany):
 ```bash
-pip install -r requirements.txt
+pip install uv
+```
+
+3. Utwórz wirtualne środowisko i zainstaluj zależności:
+```bash
+uv venv
+source .venv/bin/activate  # dla Linux/Mac
+# lub
+.venv\Scripts\activate  # dla Windows
+uv pip install -e .
 ```
 
 ## Uruchomienie
@@ -33,12 +42,11 @@ streamlit run src/app.py
 ```
 hurtbot/
 ├── src/                    # Kod źródłowy
-│   ├── api/               # Endpointy API
-│   ├── core/              # Główna logika aplikacji
-│   ├── models/            # Modele danych
-│   ├── rag/               # Implementacja RAG
-│   └── utils/             # Narzędzia pomocnicze
+│   ├── __init__.py        # Inicjalizacja pakietu
+│   ├── api.py             # FastAPI endpointy
+│   └── app.py             # Aplikacja Streamlit
 ├── tests/                 # Testy
+│   └── test_basic.py      # Podstawowe testy
 ├── .github/              # Konfiguracja GitHub Actions
-├── requirements.txt      # Zależności projektu
+├── pyproject.toml        # Zależności i konfiguracja projektu
 └── README.md            # Dokumentacja
