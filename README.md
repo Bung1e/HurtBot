@@ -1,52 +1,25 @@
-# HurtBot - Inteligentny Doradca Klienta dla Hurtowni B2B
+# HurtBot – B2B Intelligent Chatbot
 
-Inteligentny asystent klienta wykorzystujący techniki RAG (Retrieval-Augmented Generation) do obsługi zapytań klientów B2B.
+Prosty chatbot dla hurtowni B2B, zbudowany w oparciu o Azure Cognitive Search, Azure OpenAI (lub Foundry) i interfejs Streamlit.
 
-## Wymagania
+---
 
-- Python 3.12+
-- UV (Ultrafast Python Package Installer)
+## 🚀 Gotowy prototyp
 
-## Instalacja
+- **Backend**: Azure Function HTTP trigger (`HurtBotFunc/`).
+  - Pipeline RAG: `ask_rag.py`
+  - Produkty PDF, JSON → indeksowane przez `ingest_*.py`
+- **Frontend**: `frontend.py` (Streamlit UI)
+- **Dodatki**:
+  - `utils.py` — wyszukiwanie produktów po embeddingach
+  - `docs/REGULAMIN.pdf` — regulamin (może być serwowany przez Streamlit)
+- **Testy**: `tests/test_azure_search.py`
 
-1. Sklonuj repozytorium:
-```bash
-git clone https://github.com/bung1e/hurtbot.git
-cd hurtbot
-```
+---
 
-2. Zainstaluj UV (jeśli nie jest zainstalowany):
-```bash
-pip install uv
-```
+## 🛠 Instalacja lokalna
 
-3. Utwórz wirtualne środowisko i zainstaluj zależności:
-```bash
-uv venv
-source .venv/bin/activate  # dla Linux/Mac
-# lub
-.venv\Scripts\activate  # dla Windows
-uv pip install -e .
-```
-
-## Uruchomienie
-
-Aby uruchomić aplikację:
-
-```bash
-streamlit run src/app.py
-```
-
-## Struktura projektu
-
-```
-hurtbot/
-├── src/                    # Kod źródłowy
-│   ├── __init__.py        # Inicjalizacja pakietu
-│   ├── api.py             # FastAPI endpointy
-│   └── app.py             # Aplikacja Streamlit
-├── tests/                 # Testy
-│   └── test_basic.py      # Podstawowe testy
-├── .github/              # Konfiguracja GitHub Actions
-├── pyproject.toml        # Zależności i konfiguracja projektu
-└── README.md            # Dokumentacja
+1. Sklonuj repo:
+   ```bash
+   git clone https://github.com/Bung1e/HurtBot
+   cd HurtBot

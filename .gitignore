@@ -95,3 +95,21 @@ htmlcov/
 
 # Log files
 *.log 
+# Local Azure Functions config
+local.settings.json
+
+# Dotenv secrets
+.env
+
+# Visual Studio Code settings
+.vscode/
+
+# Streamlit config
+.streamlit/
+
+# Temporary / generated files
+*.log
+*.jsonl
+*.tmp
+*.db
+*.sqlite
