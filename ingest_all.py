@@ -1,12 +1,12 @@
-import os
 import json
+import os
 import uuid
 from pathlib import Path
+
 from dotenv import load_dotenv
-from azure.core.credentials import AzureKeyCredential
-from langchain_openai import AzureOpenAIEmbeddings
-from langchain_community.vectorstores import AzureSearch
 from langchain_community.document_loaders import PyMuPDFLoader
+from langchain_community.vectorstores import AzureSearch
+from langchain_openai import AzureOpenAIEmbeddings
 
 # —————————— 1. środowisko ——————————
 load_dotenv()
@@ -40,7 +40,10 @@ products = json.loads(json_path.read_text("utf-8")).get("products", [])
 print("🔁 Wczytano produkty:", len(products))
 prod_texts = [p.get("description","") or p.get("name","") for p in products]
 prod_ids = [p["id"] for p in products]
-prod_meta = [{"id": p["id"], "name": p["name"], "price": p.get("price")} for p in products]
+prod_meta = [
+    {"id": p["id"], "name": p["name"], "price": p.get("price")} 
+    for p in products
+]
 
 # —————————— 4. PDF regulamin ——————————
 pdf_path = Path(__file__).parent / "docs" / "REGULAMIN.pdf"
@@ -69,7 +72,7 @@ azure_search = AzureSearch(
 # użyjemy upload_documents — trzeba przygotować ręcznie dokumenty
 prod_vecs = emb.embed_documents(prod_texts)
 prod_docs = []
-for p, vec, meta in zip(products, prod_vecs, prod_meta):
+for p, vec, meta in zip(products, prod_vecs, prod_meta, strict=True):
     prod_docs.append({
         "id": meta["id"],
         "name": meta["name"],

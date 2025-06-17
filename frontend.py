@@ -1,12 +1,13 @@
-import streamlit as st
-import requests
 import os
+
+import requests
+import streamlit as st
 
 # Pobranie API_URL z .env lub użycie lokalnego endpointu
 API_URL = os.getenv("API_URL", "http://localhost:7071/api/ask_rag")
 
-st.set_page_config(page_title="🧠 HurtBot – Chat B2B", layout="centered")
-st.title("🧠 HurtBot – Chatbot B2B (lokalnie)")
+st.set_page_config(page_title="🧠 HurtBot - Chat B2B", layout="centered")
+st.title("🧠 HurtBot - Chatbot B2B (lokalnie)")
 
 # Historia dialogu
 if "history" not in st.session_state:

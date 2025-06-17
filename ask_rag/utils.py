@@ -1,7 +1,8 @@
-from langchain.vectorstores import AzureSearch
-from langchain.openai import OpenAIEmbeddings
-from azure.core.credentials import AzureKeyCredential
 import os
+
+from azure.core.credentials import AzureKeyCredential
+from langchain.openai import OpenAIEmbeddings
+from langchain.vectorstores import AzureSearch
 
 # Inicjalizacja
 emb = OpenAIEmbeddings(

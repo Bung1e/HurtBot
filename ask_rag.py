@@ -1,7 +1,11 @@
-import os
 import json
+import os
 from pathlib import Path
+
 from dotenv import load_dotenv
+from langchain.chains import RetrievalQA
+from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
+from langchain_community.retrievers import AzureAISearchRetriever
 
 # 1️⃣ Wczytanie .env i local.settings.json
 load_dotenv()
@@ -38,10 +42,6 @@ os.environ["AZURE_AI_SEARCH_INDEX_NAME"] = os.getenv("AZURE_SEARCH_INDEX")
 os.environ["AZURE_AI_SEARCH_API_KEY"] = os.getenv("AZURE_SEARCH_KEY")
 
 # 5️⃣ Import potrzebnych komponentów
-from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
-from langchain_community.retrievers import AzureAISearchRetriever
-from langchain.chains import RetrievalQA
-
 def ask_rag(query: str) -> str:
     retriever = AzureAISearchRetriever(
         content_key="description",
