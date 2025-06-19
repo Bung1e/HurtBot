@@ -23,7 +23,7 @@ if st.button("Wyślij") and query:
                 API_URL,
                 json={"question": query},
                 headers={"Content-Type": "application/json"},
-                timeout=30
+                timeout=30,
             )
             if resp.ok:
                 bot_ans = resp.json().get("answer", "").strip()

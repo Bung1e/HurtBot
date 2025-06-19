@@ -19,7 +19,7 @@ required_vars = [
     "AZURE_OPENAI_EMBEDDING_DEPLOYMENT",
     "AZURE_SEARCH_ENDPOINT",
     "AZURE_SEARCH_KEY",
-    "AZURE_SEARCH_INDEX"
+    "AZURE_SEARCH_INDEX",
 ]
 for name in required_vars:
     if not os.getenv(name):
@@ -43,16 +43,18 @@ emb = AzureOpenAIEmbeddings(
 )
 
 # 5. Przygotuj dokumenty
-texts = [p.get("description","") for p in products]
+texts = [p.get("description", "") for p in products]
 embeddings = emb.embed_documents(texts)
 docs = []
 for p, vec in zip(products, embeddings, strict=True):
-    docs.append({
-        "id": p["id"],
-        "name": p["name"],
-        "description": p.get("description",""),
-        "embedding": vec
-    })
+    docs.append(
+        {
+            "id": p["id"],
+            "name": p["name"],
+            "description": p.get("description", ""),
+            "embedding": vec,
+        }
+    )
 print(f"🔁 Przygotowano {len(docs)} dokumentów.")
 
 # 6. Połącz z Azure Cognitive Search
