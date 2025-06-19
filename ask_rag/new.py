@@ -1,7 +1,7 @@
 import json
 
 # Wczytaj dane z pliku lub zmiennej
-with open("products.json", "r", encoding="utf-8") as f:
+with open("products.json", encoding="utf-8") as f:
     full_data = json.load(f)
 
 # Lista produktów

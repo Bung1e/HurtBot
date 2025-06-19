@@ -1,14 +1,15 @@
 # File: ask_rag.py
 
-import os
 import json
 import logging
+import os
 from pathlib import Path
+
 from dotenv import load_dotenv
-from langchain_community.retrievers import AzureAISearchRetriever
-from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
-from langchain_core.prompts import PromptTemplate
 from langchain.chains.combine_documents import create_stuff_documents_chain
+from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
+from langchain_community.retrievers import AzureAISearchRetriever
+from langchain_core.prompts import PromptTemplate
 
 # ——————————————————————
 # 1. Konfiguracja logowania

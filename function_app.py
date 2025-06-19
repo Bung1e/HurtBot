@@ -1,10 +1,11 @@
+import json
+import logging
+import traceback
+
 from azure.functions import HttpRequest, HttpResponse
 from azure.functions.decorators import FunctionApp
 
 from ask_rag import ask_rag
-import json
-import logging
-import traceback
 
 # ——————————————————————
 # 1. Konfiguracja logowania

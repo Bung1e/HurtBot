@@ -1,13 +1,14 @@
 # ingest_all.py
 
-import os
 import json
+import os
 import uuid
 from pathlib import Path
+
 from dotenv import load_dotenv
 from langchain_community.document_loaders import PyMuPDFLoader
-from langchain_openai import AzureOpenAIEmbeddings
 from langchain_community.vectorstores import AzureSearch
+from langchain_openai import AzureOpenAIEmbeddings
 
 # 1. Wczytywanie zmiennych środowiskowych
 cfg = Path(__file__).parent / "local.settings.json"
