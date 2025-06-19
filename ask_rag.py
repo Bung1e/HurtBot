@@ -119,9 +119,7 @@ def ask_rag(query: str) -> str:
         if alternatives:
             alt_text = "\n\nAlternatywne produkty w tej samej kategorii:\n"
             for alt in alternatives:
-                alt_text += (
-                    f"- {alt.get('name')} — {alt.get('description')}\n"
-                )
+                alt_text += f"- {alt.get('name')} — {alt.get('description')}\n"
             response += alt_text
 
         return response
