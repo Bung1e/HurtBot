@@ -40,7 +40,9 @@ products = json.loads(products_path.read_text("utf-8"))
 
 
 def find_alternatives_by_category(
-    category: str, exclude_id: str = None, max_results: int = 3
+    category: str,
+    exclude_id: str | None = None,
+    max_results: int = 3,
 ):
     candidates = [
         p
@@ -57,7 +59,6 @@ def ask_rag(query: str) -> str:
     try:
         logger.info(f"Zapytanie: {query}")
 
-        # Nazwa usługi wyszukiwania (z adresu)
         search_service_name = (
             os.getenv("AZURE_SEARCH_ENDPOINT").split("//")[-1].split(".")[0]
         )
@@ -106,14 +107,11 @@ def ask_rag(query: str) -> str:
             temperature=0.0,
         )
 
-        prompt = PromptTemplate.from_template("""Jesteś inteligentnym asystentem klienta hurtowni B2B.
-Odpowiadaj wyłącznie na podstawie poniższych dokumentów:
-
-{context}
-
-Pytanie: {input}
-Odpowiedź:
-""")
+        prompt = PromptTemplate.from_template(
+            "Jesteś inteligentnym asystentem klienta hurtowni B2B.\n"
+            "Odpowiadaj wyłącznie na podstawie poniższych dokumentów:\n\n"
+            "{context}\n\nPytanie: {input}\nOdpowiedź:"
+        )
 
         chain = create_stuff_documents_chain(llm=llm, prompt=prompt)
         response = chain.invoke({"input": query, "context": all_docs})
@@ -121,7 +119,9 @@ Odpowiedź:
         if alternatives:
             alt_text = "\n\nAlternatywne produkty w tej samej kategorii:\n"
             for alt in alternatives:
-                alt_text += f"- {alt.get('name')} — {alt.get('description')}\n"
+                alt_text += (
+                    f"- {alt.get('name')} — {alt.get('description')}\n"
+                )
             response += alt_text
 
         return response
