@@ -1,7 +1,8 @@
-from langchain.vectorstores import AzureSearch
-from langchain.openai import OpenAIEmbeddings
-from azure.core.credentials import AzureKeyCredential
 import os
+
+from azure.core.credentials import AzureKeyCredential
+from langchain.openai import OpenAIEmbeddings
+from langchain.vectorstores import AzureSearch
 
 # Inicjalizacja
 emb = OpenAIEmbeddings(
@@ -9,7 +10,7 @@ emb = OpenAIEmbeddings(
     openai_api_key=os.getenv("AZURE_OPENAI_KEY"),
     openai_api_base=os.getenv("AZURE_OPENAI_ENDPOINT"),
     openai_api_type="azure",
-    openai_api_version="2023-07-01-preview"
+    openai_api_version="2023-07-01-preview",
 )
 vectorstore = AzureSearch(
     search_endpoint=os.getenv("AZURE_SEARCH_ENDPOINT"),
@@ -17,8 +18,9 @@ vectorstore = AzureSearch(
     credential=AzureKeyCredential(os.getenv("AZURE_SEARCH_KEY")),
     embedding=emb,
     text_key="description",
-    name_key="id"
+    name_key="id",
 )
+
 
 def search_products(query: str) -> str:
     docs = vectorstore.similarity_search(query, k=3)

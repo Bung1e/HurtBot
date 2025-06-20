@@ -1,12 +1,12 @@
-import os
 import json
+import os
 import uuid
 from pathlib import Path
+
 from dotenv import load_dotenv
-from azure.core.credentials import AzureKeyCredential
-from langchain_openai import AzureOpenAIEmbeddings
-from langchain_community.vectorstores import AzureSearch
 from langchain_community.document_loaders import PyMuPDFLoader
+from langchain_community.vectorstores import AzureSearch
+from langchain_openai import AzureOpenAIEmbeddings
 
 # —————————— 1. środowisko ——————————
 load_dotenv()
@@ -17,8 +17,12 @@ if cfg.exists():
         os.environ.setdefault(k, v)
 
 REQUIRED = [
-    "AZURE_OPENAI_ENDPOINT", "AZURE_OPENAI_KEY", "AZURE_OPENAI_EMBEDDING_DEPLOYMENT",
-    "AZURE_SEARCH_ENDPOINT", "AZURE_SEARCH_KEY", "AZURE_SEARCH_INDEX"
+    "AZURE_OPENAI_ENDPOINT",
+    "AZURE_OPENAI_KEY",
+    "AZURE_OPENAI_EMBEDDING_DEPLOYMENT",
+    "AZURE_SEARCH_ENDPOINT",
+    "AZURE_SEARCH_KEY",
+    "AZURE_SEARCH_INDEX",
 ]
 for env in REQUIRED:
     if not os.getenv(env):
@@ -38,9 +42,11 @@ emb = AzureOpenAIEmbeddings(
 json_path = Path(__file__).parent / "ask_rag" / "products.json"
 products = json.loads(json_path.read_text("utf-8")).get("products", [])
 print("🔁 Wczytano produkty:", len(products))
-prod_texts = [p.get("description","") or p.get("name","") for p in products]
+prod_texts = [p.get("description", "") or p.get("name", "") for p in products]
 prod_ids = [p["id"] for p in products]
-prod_meta = [{"id": p["id"], "name": p["name"], "price": p.get("price")} for p in products]
+prod_meta = [
+    {"id": p["id"], "name": p["name"], "price": p.get("price")} for p in products
+]
 
 # —————————— 4. PDF regulamin ——————————
 pdf_path = Path(__file__).parent / "docs" / "REGULAMIN.pdf"
@@ -60,8 +66,8 @@ azure_search = AzureSearch(
     azure_search_key=os.getenv("AZURE_SEARCH_KEY"),
     index_name=os.getenv("AZURE_SEARCH_INDEX"),
     embedding_function=emb,
-    text_key="description",        # nazwa pola tekstowego w indeksie
-    vector_field_name="embedding", # nazwa pola wektora
+    text_key="description",  # nazwa pola tekstowego w indeksie
+    vector_field_name="embedding",  # nazwa pola wektora
     document_id_key="id",
 )
 
@@ -69,23 +75,27 @@ azure_search = AzureSearch(
 # użyjemy upload_documents — trzeba przygotować ręcznie dokumenty
 prod_vecs = emb.embed_documents(prod_texts)
 prod_docs = []
-for p, vec, meta in zip(products, prod_vecs, prod_meta):
-    prod_docs.append({
-        "id": meta["id"],
-        "name": meta["name"],
-        "description": p.get("description",""),
-        "embedding": vec
-    })
+for p, vec, meta in zip(products, prod_vecs, prod_meta, strict=True):
+    prod_docs.append(
+        {
+            "id": meta["id"],
+            "name": meta["name"],
+            "description": p.get("description", ""),
+            "embedding": vec,
+        }
+    )
 
 # —————————— 7. Indeks PDF fragmentów ——————————
 pdf_docs_to_upload = []
 for doc in pdf_docs:
-    pdf_docs_to_upload.append({
-        "id": doc.metadata["id"],
-        "name": doc.metadata["name"],
-        "description": doc.page_content,
-        "embedding": emb.embed_documents([doc.page_content])[0]
-    })
+    pdf_docs_to_upload.append(
+        {
+            "id": doc.metadata["id"],
+            "name": doc.metadata["name"],
+            "description": doc.page_content,
+            "embedding": emb.embed_documents([doc.page_content])[0],
+        }
+    )
 
 # —————————— 8. Wgrywanie ——————————
 all_docs = prod_docs + pdf_docs_to_upload
