@@ -1,0 +1,362 @@
+[
+  {
+    "id": "PROD_001",
+    "name": "Farba akrylowa biała matowa 10L",
+    "description": "Wysokiej jakości farba akrylowa do wnętrz",
+    "content": "Farba akrylowa biała matowa 10L Wysokiej jakości farba akrylowa do wnętrz Farby ścienne Dekoral CE VOC 10L biały matowy 12-14 m²/L 2h Cena: 207 PLN netto"
+  },
+  {
+    "id": "PROD_002",
+    "name": "Farba akrylowa biała półmat 10L",
+    "description": "Farba akrylowa o wykończeniu półmatowym",
+    "content": "Farba akrylowa biała półmat 10L Farba akrylowa o wykończeniu półmatowym Farby ścienne Dekoral CE VOC 10L biały półmatowy 12-14 m²/L 2h Cena: 263 PLN netto"
+  },
+  {
+    "id": "PROD_003",
+    "name": "Farba lateksowa biała 10L Premium",
+    "description": "Lateksowa farba premium do wnętrz",
+    "content": "Farba lateksowa biała 10L Premium Lateksowa farba premium do wnętrz Farby ścienne Śnieżka CE Ecolabel 10L biały satynowy 10-12 m²/L 4h Cena: 262 PLN netto"
+  },
+  {
+    "id": "PROD_004",
+    "name": "Farba akrylowa krem 5L",
+    "description": "Farba akrylowa w kolorze kremowym",
+    "content": "Farba akrylowa krem 5L Farba akrylowa w kolorze kremowym Farby ścienne Dekoral CE 5L krem matowy 12-14 m²/L 2h Cena: 200 PLN netto"
+  },
+  {
+    "id": "PROD_005",
+    "name": "Lakier do drewna bezbarwny 2.5L",
+    "description": "Lakier akrylowy do drewna wewnętrznego",
+    "content": "Lakier do drewna bezbarwny 2.5L Lakier akrylowy do drewna wewnętrznego Lakiery Dekoral CE 2.5L bezbarwny połysk 10-12 m²/L 6h Cena: 189 PLN netto"
+  },
+  {
+    "id": "PROD_006",
+    "name": "Wiertarka udarowa 18V Li-Ion",
+    "description": "Profesjonalna wiertarka udarowa z akumulatorem",
+    "content": "Wiertarka udarowa 18V Li-Ion Profesjonalna wiertarka udarowa z akumulatorem Narzędzia elektryczne Bosch CE GS 18V Li-Ion 60Nm 13mm 1.8kg Cena: 135 PLN netto"
+  },
+  {
+    "id": "PROD_007",
+    "name": "Szlifierka kątowa 125mm 850W",
+    "description": "Szlifierka kątowa do zastosowań uniwersalnych",
+    "content": "Szlifierka kątowa 125mm 850W Szlifierka kątowa do zastosowań uniwersalnych Narzędzia elektryczne Makita CE 850W 125mm 11000 rpm 1.9kg Cena: 75 PLN netto"
+  },
+  {
+    "id": "PROD_008",
+    "name": "Klej do płytek C1 25kg",
+    "description": "Klej cementowy do płytek ceramicznych",
+    "content": "Klej do płytek C1 25kg Klej cementowy do płytek ceramicznych Kleje Ceresit CE EN 12004 25kg C1 4-6 m² 3h +5°C do +30°C Cena: 95 PLN netto"
+  },
+  {
+    "id": "PROD_009",
+    "name": "Żarówka LED E27 10W 4000K",
+    "description": "Energooszczędna żarówka LED",
+    "content": "Żarówka LED E27 10W 4000K Energooszczędna żarówka LED Oświetlenie Philips CE Energy Star 10W 75W 4000K 1055lm 15000h Cena: 190 PLN netto"
+  },
+  {
+    "id": "PROD_010",
+    "name": "Rura PVC 110mm 3m",
+    "description": "Rura kanalizacyjna PVC",
+    "content": "Rura PVC 110mm 3m Rura kanalizacyjna PVC Rury Wavin CE PZH 110mm 3m PVC SN4 pomarańczowy Cena: 86 PLN netto"
+  },
+  {
+    "id": "PROD_011",
+    "name": "Farba akrylowa szara 10L",
+    "description": "Farba akrylowa w kolorze szarym",
+    "content": "Farba akrylowa szara 10L Farba akrylowa w kolorze szarym Farby ścienne Dekoral CE VOC 10L szary matowy 12-14 m²/L 2h Cena: 233 PLN netto"
+  },
+  {
+    "id": "PROD_012",
+    "name": "Młotek stalowy 500g",
+    "description": "Młotek z trzonkiem z włókna szklanego",
+    "content": "Młotek stalowy 500g Młotek z trzonkiem z włókna szklanego Narzędzia ręczne Stanley CE 500g włókno szklane stal 320mm Cena: 254 PLN netto"
+  },
+  {
+    "id": "PROD_013",
+    "name": "Cement portlandzki CEM I 42.5R 25kg",
+    "description": "Cement wysokiej wytrzymałości",
+    "content": "Cement portlandzki CEM I 42.5R 25kg Cement wysokiej wytrzymałości Cement Lafarge CE EN 197-1 25kg CEM I 42.5R 42.5 MPa 2-4h Cena: 249 PLN netto"
+  },
+  {
+    "id": "PROD_014",
+    "name": "Kabel elektryczny YDY 3x2.5mm² 100m",
+    "description": "Kabel instalacyjny mieszkaniowy",
+    "content": "Kabel elektryczny YDY 3x2.5mm² 100m Kabel instalacyjny mieszkaniowy Kable Tele-Fonika CE SEP YDY 3x2.5mm² 100m 450/750V czarny Cena: 56 PLN netto"
+  },
+  {
+    "id": "PROD_015",
+    "name": "Zawór kulowy 1/2\" mosiężny",
+    "description": "Zawór kulowy z gwintem wewnętrznym",
+    "content": "Zawór kulowy 1/2\" mosiężny Zawór kulowy z gwintem wewnętrznym Armatura Ferro CE PZH 1/2\" mosiądz wewnętrzny 16 bar 120°C Cena: 190 PLN netto"
+  },
+  {
+    "id": "PROD_016",
+    "name": "Farba lateksowa krem 5L",
+    "description": "Farba lateksowa w kolorze kremowym",
+    "content": "Farba lateksowa krem 5L Farba lateksowa w kolorze kremowym Farby ścienne Śnieżka CE 5L krem satynowy 10-12 m²/L 4h Cena: 84 PLN netto"
+  },
+  {
+    "id": "PROD_017",
+    "name": "Wkrętarka akumulatorowa 12V",
+    "description": "Kompaktowa wkrętarka do prac domowych",
+    "content": "Wkrętarka akumulatorowa 12V Kompaktowa wkrętarka do prac domowych Narzędzia elektryczne Bosch CE GS 12V Li-Ion 30Nm 10mm 1.1kg Cena: 25 PLN netto"
+  },
+  {
+    "id": "PROD_018",
+    "name": "Grunt głęboko penetrujący 5L",
+    "description": "Grunt penetrujący pod farby",
+    "content": "Grunt głęboko penetrujący 5L Grunt penetrujący pod farby Grunty Dekoral CE 5L penetrujący 8-12 m²/L 4h 5-10% Cena: 133 PLN netto"
+  },
+  {
+    "id": "PROD_019",
+    "name": "Płytka podłogowa 60x60 szara",
+    "description": "Płytka gresowa matowa",
+    "content": "Płytka podłogowa 60x60 szara Płytka gresowa matowa Płytki Paradyż CE EN 14411 60x60cm 9.5mm szary matowy R10 Cena: 119 PLN netto"
+  },
+  {
+    "id": "PROD_020",
+    "name": "Gniazdko podwójne z uziemieniem",
+    "description": "Gniazdko podwójne białe z bolcem",
+    "content": "Gniazdko podwójne z uziemieniem Gniazdko podwójne białe z bolcem Gniazdka Legrand CE VDE podwójne 230V 16A biały IP20 Cena: 153 PLN netto"
+  },
+  {
+    "id": "PROD_021",
+    "name": "Klucz płaski 17mm",
+    "description": "Klucz płaski chromowany",
+    "content": "Klucz płaski 17mm Klucz płaski chromowany Narzędzia ręczne Stanley DIN 3113 17mm stal chromowana 210mm 110g Cena: 188 PLN netto"
+  },
+  {
+    "id": "PROD_022",
+    "name": "Rura miedziana 15mm 5m",
+    "description": "Rura miedziana do instalacji wody",
+    "content": "Rura miedziana 15mm 5m Rura miedziana do instalacji wody Rury KME CE EN 1057 15mm 5m miedź 1mm 40 bar Cena: 138 PLN netto"
+  },
+  {
+    "id": "PROD_023",
+    "name": "Farba do drewna brązowa 2.5L",
+    "description": "Farba olejno-żywiczna do drewna",
+    "content": "Farba do drewna brązowa 2.5L Farba olejno-żywiczna do drewna Farby do drewna Dekoral CE 2.5L brązowy olejno-żywiczna 8-10 m²/L 8h Cena: 173 PLN netto"
+  },
+  {
+    "id": "PROD_024",
+    "name": "Taśma LED 5m 12V ciepła",
+    "description": "Taśma LED samoprzylepna",
+    "content": "Taśma LED 5m 12V ciepła Taśma LED samoprzylepna Oświetlenie Philips CE RoHS 5m 12V 24W 3000K IP20 Cena: 209 PLN netto"
+  },
+  {
+    "id": "PROD_025",
+    "name": "Izolacja styropianowa 10cm",
+    "description": "Płyta styropianowa do ocieplenia",
+    "content": "Izolacja styropianowa 10cm Płyta styropianowa do ocieplenia Izolacje Austrotherm CE ITB 10cm 0.031 W/mK 20 kg/m³ 100x50cm E Cena: 166 PLN netto"
+  },
+  {
+    "id": "PROD_026",
+    "name": "Piła tarczowa 190mm 24T",
+    "description": "Tarcza do drewna 24 zęby",
+    "content": "Piła tarczowa 190mm 24T Tarcza do drewna 24 zęby Akcesoria Bosch CE 190mm 24 30mm HW/CT 9000 Cena: 226 PLN netto"
+  },
+  {
+    "id": "PROD_027",
+    "name": "Syfon umywalkowy 32mm",
+    "description": "Syfon butelkowy chromowany",
+    "content": "Syfon umywalkowy 32mm Syfon butelkowy chromowany Armatura Ferro CE 32mm mosiądz chromowany butelkowy 300mm Cena: 271 PLN netto"
+  },
+  {
+    "id": "PROD_028",
+    "name": "Farba akrylowa niebieska 5L",
+    "description": "Farba akrylowa w kolorze niebieskim",
+    "content": "Farba akrylowa niebieska 5L Farba akrylowa w kolorze niebieskim Farby ścienne Śnieżka CE 5L niebieski matowy 10-12 m²/L 4h Cena: 297 PLN netto"
+  },
+  {
+    "id": "PROD_029",
+    "name": "Klej do tapet 200g",
+    "description": "Klej w proszku do tapet",
+    "content": "Klej do tapet 200g Klej w proszku do tapet Kleje Quelyd CE 200g 35-40 m² mieszać z wodą 8h Cena: 164 PLN netto"
+  },
+  {
+    "id": "PROD_030",
+    "name": "Żarówka LED GU10 5W 3000K",
+    "description": "Żarówka LED halogenowa",
+    "content": "Żarówka LED GU10 5W 3000K Żarówka LED halogenowa Oświetlenie Osram CE Energy Star 5W 50W 3000K 350lm 36° Cena: 87 PLN netto"
+  },
+  {
+    "id": "PROD_031",
+    "name": "Wkrętak krzyżakowy PH2",
+    "description": "Wkrętak krzyżakowy z uchwytem ergonomicznym",
+    "content": "Wkrętak krzyżakowy PH2 Wkrętak krzyżakowy z uchwytem ergonomicznym Narzędzia ręczne Stanley CE PH2 125mm ergonomiczny stal chromowana Cena: 25 PLN netto"
+  },
+  {
+    "id": "PROD_032",
+    "name": "Cement szybkotwardniejący 25kg",
+    "description": "Cement szybkowiążący do napraw",
+    "content": "Cement szybkotwardniejący 25kg Cement szybkowiążący do napraw Cement Lafarge CE 25kg szybkotwardniejący 15-30 min 30 MPa Cena: 247 PLN netto"
+  },
+  {
+    "id": "PROD_033",
+    "name": "Przełącznik pojedynczy biały",
+    "description": "Przełącznik światła pojedynczy",
+    "content": "Przełącznik pojedynczy biały Przełącznik światła pojedynczy Gniazdka Legrand CE VDE pojedynczy 230V 10A biały podtynkowy Cena: 158 PLN netto"
+  },
+  {
+    "id": "PROD_034",
+    "name": "Lakier do metalu czarny 1L",
+    "description": "Lakier antykorozyjny do metalu",
+    "content": "Lakier do metalu czarny 1L Lakier antykorozyjny do metalu Lakiery Dekoral CE 1L czarny alkidowa 8-10 m²/L 6h Cena: 183 PLN netto"
+  },
+  {
+    "id": "PROD_035",
+    "name": "Miarka taśmowa 5m",
+    "description": "Miarka stalowa z zatrzaskiem",
+    "content": "Miarka taśmowa 5m Miarka stalowa z zatrzaskiem Narzędzia ręczne Stanley CE EEC Class II 5m 25mm plastikowe stal ±1mm/m Cena: 275 PLN netto"
+  },
+  {
+    "id": "PROD_036",
+    "name": "Rura PE-X 16x2mm 100m",
+    "description": "Rura PE-X do ogrzewania podłogowego",
+    "content": "Rura PE-X 16x2mm 100m Rura PE-X do ogrzewania podłogowego Rury Rehau CE EN ISO 15875 16x2mm 100m PE-X 10 bar 95°C Cena: 129 PLN netto"
+  },
+  {
+    "id": "PROD_037",
+    "name": "Farba emulsyjna biała 15L",
+    "description": "Farba emulsyjna ekonomiczna",
+    "content": "Farba emulsyjna biała 15L Farba emulsyjna ekonomiczna Farby ścienne Śnieżka CE 15L biały matowy 8-10 m²/L 2h Cena: 153 PLN netto"
+  },
+  {
+    "id": "PROD_038",
+    "name": "Reflektor LED 30W IP65",
+    "description": "Reflektor zewnętrzny wodoodporny",
+    "content": "Reflektor LED 30W IP65 Reflektor zewnętrzny wodoodporny Oświetlenie Philips CE IP65 30W 3000lm 4000K IP65 120° Cena: 67 PLN netto"
+  },
+  {
+    "id": "PROD_039",
+    "name": "Gips szpachlowy 20kg",
+    "description": "Gips do szpachlowania ścian",
+    "content": "Gips szpachlowy 20kg Gips do szpachlowania ścian Kleje Knauf CE EN 13279 20kg szpachlowy 15-20 m² 45 min 0.3mm Cena: 281 PLN netto"
+  },
+  {
+    "id": "PROD_040",
+    "name": "Poziomnica aluminiowa 60cm",
+    "description": "Poziomnica z 3 libellami",
+    "content": "Poziomnica aluminiowa 60cm Poziomnica z 3 libellami Narzędzia ręczne Stanley DIN 877 60cm aluminium 3 0.5mm/m 450g Cena: 133 PLN netto"
+  },
+  {
+    "id": "PROD_041",
+    "name": "Kolano PP 90° 32mm",
+    "description": "Kolano polipropylenowe 90 stopni",
+    "content": "Kolano PP 90° 32mm Kolano polipropylenowe 90 stopni Armatura Wavin CE 90° 32mm PP spawanie 16 bar Cena: 299 PLN netto"
+  },
+  {
+    "id": "PROD_042",
+    "name": "Farba akrylowa zielona 2.5L",
+    "description": "Farba akrylowa w kolorze zielonym",
+    "content": "Farba akrylowa zielona 2.5L Farba akrylowa w kolorze zielonym Farby ścienne Dekoral CE 2.5L zielony matowy 12-14 m²/L 2h Cena: 190 PLN netto"
+  },
+  {
+    "id": "PROD_043",
+    "name": "Żarówka halogenowa G9 40W",
+    "description": "Żarówka halogenowa kapsułkowa",
+    "content": "Żarówka halogenowa G9 40W Żarówka halogenowa kapsułkowa Oświetlenie Osram CE 40W G9 230V 630lm 2000h Cena: 170 PLN netto"
+  },
+  {
+    "id": "PROD_044",
+    "name": "Klucz oczkowy 13mm",
+    "description": "Klucz oczkowy chromowany",
+    "content": "Klucz oczkowy 13mm Klucz oczkowy chromowany Narzędzia ręczne Makita DIN 838 13mm stal chromowana 180mm 85g Cena: 186 PLN netto"
+  },
+  {
+    "id": "PROD_045",
+    "name": "Woś klejący do płytek 25kg",
+    "description": "Klej elastyczny do płytek C2T",
+    "content": "Woś klejący do płytek 25kg Klej elastyczny do płytek C2T Kleje Ceresit CE EN 12004 25kg C2T 3-5 m² 4h elastyczny Cena: 229 PLN netto"
+  },
+  {
+    "id": "PROD_046",
+    "name": "Przewód YDYp 3x1.5mm² 50m",
+    "description": "Przewód płaski do instalacji",
+    "content": "Przewód YDYp 3x1.5mm² 50m Przewód płaski do instalacji Kable Tele-Fonika CE SEP YDYp 3x1.5mm² 50m 300/500V płaski Cena: 116 PLN netto"
+  },
+  {
+    "id": "PROD_047",
+    "name": "Grunt pod farby akrylowe 10L",
+    "description": "Grunt zwiększający przyczepność farb",
+    "content": "Grunt pod farby akrylowe 10L Grunt zwiększający przyczepność farb Grunty Śnieżka CE 10L akrylowy 10-14 m²/L 4h biały Cena: 76 PLN netto"
+  },
+  {
+    "id": "PROD_048",
+    "name": "Zawór termostatyczny 1/2\"",
+    "description": "Zawór termostatyczny do grzejnika",
+    "content": "Zawór termostatyczny 1/2\" Zawór termostatyczny do grzejnika Armatura Ferro CE EN 215 1/2\" termostatyczny mosiądz nikielowany 6-28°C 0.5 Cena: 95 PLN netto"
+  },
+  {
+    "id": "PROD_049",
+    "name": "Płytka ścienna 25x40 biała",
+    "description": "Płytka ceramiczna błyszcząca",
+    "content": "Płytka ścienna 25x40 biała Płytka ceramiczna błyszcząca Płytki Paradyż CE EN 14411 25x40cm 7mm biały błyszczący <10% Cena: 98 PLN netto"
+  },
+  {
+    "id": "PROD_050",
+    "name": "Pistolet do silikonu",
+    "description": "Pistolet do kartusz 310ml",
+    "content": "Pistolet do silikonu Pistolet do kartusz 310ml Narzędzia ręczne Stanley CE 310ml metal szkieletowy 12:1 Cena: 256 PLN netto"
+  },
+  {
+    "id": "PROD_051",
+    "name": "Silikon sanitarny biały 280ml",
+    "description": "Silikon do łazienek i kuchni",
+    "content": "Silikon sanitarny biały 280ml Silikon do łazienek i kuchni Kleje Soudal CE 280ml biały acetat -40°C do +150°C 24h Cena: 203 PLN netto"
+  },
+  {
+    "id": "PROD_052",
+    "name": "Wełna mineralna 15cm 5m²",
+    "description": "Wełna mineralna do ocieplenia",
+    "content": "Wełna mineralna 15cm 5m² Wełna mineralna do ocieplenia Izolacje Rockwool CE ITB 15cm 5m² 0.037 W/mK 40 kg/m³ A1 Cena: 71 PLN netto"
+  },
+  {
+    "id": "PROD_053",
+    "name": "Oprawa LED 36W 4000K 120cm",
+    "description": "Oprawa liniowa do biur",
+    "content": "Oprawa LED 36W 4000K 120cm Oprawa liniowa do biur Oświetlenie Philips CE ENEC 36W 120cm 4000K 3600lm IP20 Cena: 109 PLN netto"
+  },
+  {
+    "id": "PROD_054",
+    "name": "Piła ręczna 450mm 7TPI",
+    "description": "Piła uniwersalna do drewna",
+    "content": "Piła ręczna 450mm 7TPI Piła uniwersalna do drewna Narzędzia ręczne Stanley CE 450mm 7 ergonomiczny stal hartowana uniwersalny Cena: 142 PLN netto"
+  },
+  {
+    "id": "PROD_055",
+    "name": "Kran jednouchwytowy umywalkowy",
+    "description": "Bateria umywalkowa chromowana",
+    "content": "Kran jednouchwytowy umywalkowy Bateria umywalkowa chromowana Armatura Ferro CE WRAS jednouchwytowy chrom 150mm tak na blat Cena: 294 PLN netto"
+  },
+  {
+    "id": "PROD_056",
+    "name": "Farba tablicowa czarna 1L",
+    "description": "Farba do pisania kredą",
+    "content": "Farba tablicowa czarna 1L Farba do pisania kredą Farby ścienne Dekoral CE 1L czarny matowy 8-10 m²/L tablicowa Cena: 275 PLN netto"
+  },
+  {
+    "id": "PROD_057",
+    "name": "Rozdzielnica 12 modułów IP40",
+    "description": "Rozdzielnica podtynkowa biała",
+    "content": "Rozdzielnica 12 modułów IP40 Rozdzielnica podtynkowa biała Rozdzielnie Legrand CE VDE 12 IP40 biały podtynkowa przezroczysta Cena: 279 PLN netto"
+  },
+  {
+    "id": "PROD_058",
+    "name": "Klucz nasadowy 19mm 1/2\"",
+    "description": "Nasadka sześciokątna 1/2\"",
+    "content": "Klucz nasadowy 19mm 1/2\" Nasadka sześciokątna 1/2\" Narzędzia ręczne Makita DIN 3124 19mm 1/2\" stal chromowana 38mm sześciokątny Cena: 168 PLN netto"
+  },
+  {
+    "id": "PROD_059",
+    "name": "Zaprawa do fugowania 5kg szara",
+    "description": "Zaprawa elastyczna do spoin",
+    "content": "Zaprawa do fugowania 5kg szara Zaprawa elastyczna do spoin Kleje Ceresit CE EN 13888 5kg szary 1-6mm elastyczna 30 min Cena: 75 PLN netto"
+  },
+  {
+    "id": "PROD_060",
+    "name": "Rura kanalizacyjna PVC 50mm 3m",
+    "description": "Rura wewnętrzna szara",
+    "content": "Rura kanalizacyjna PVC 50mm 3m Rura wewnętrzna szara Rury Wavin CE EN 1329 50mm 3m PVC szary kanalizacja wewnętrzna Cena: 170 PLN netto"
+  }
+]
