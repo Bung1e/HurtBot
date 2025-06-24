@@ -7,7 +7,7 @@ sys.path.append(str(Path(__file__).resolve().parents[1]))
 from ask_rag import ask_rag
 
 
-def test_ask_rag_output():
+def test_ask_rag_output() -> None:
     answer = ask_rag("Czy mogę zwrócić towar?")
     assert isinstance(answer, str)
     assert len(answer) > 0
