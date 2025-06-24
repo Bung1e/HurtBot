@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Any
 
 from dotenv import load_dotenv
+from pydantic import SecretStr
 from langchain_community.document_loaders import PyMuPDFLoader
 from langchain_community.vectorstores import AzureSearch
 from langchain_openai import AzureOpenAIEmbeddings
@@ -36,7 +37,7 @@ emb = AzureOpenAIEmbeddings(
     azure_deployment=os.getenv("AZURE_OPENAI_EMBEDDING_DEPLOYMENT") or "",
     model=os.getenv("AZURE_OPENAI_EMBEDDING_DEPLOYMENT") or "",
     azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT") or "",
-    api_key=os.getenv("AZURE_OPENAI_KEY") or "",
+    api_key=SecretStr(os.getenv("AZURE_OPENAI_KEY") or ""),
     api_version="2023-07-01-preview",
 )
 
