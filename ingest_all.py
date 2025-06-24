@@ -1,103 +1,117 @@
+# ingest_all.py
+
 import json
 import os
 import uuid
 from pathlib import Path
+from typing import Any
 
 from dotenv import load_dotenv
 from langchain_community.document_loaders import PyMuPDFLoader
 from langchain_community.vectorstores import AzureSearch
 from langchain_openai import AzureOpenAIEmbeddings
+from pydantic import SecretStr
 
-# —————————— 1. środowisko ——————————
-load_dotenv()
+# 1. Wczytywanie zmiennych środowiskowych
 cfg = Path(__file__).parent / "local.settings.json"
 if cfg.exists():
     data = json.loads(cfg.read_text("utf-8")).get("Values", {})
     for k, v in data.items():
         os.environ.setdefault(k, v)
 
-REQUIRED = [
+load_dotenv()
+
+required = [
     "AZURE_OPENAI_ENDPOINT",
     "AZURE_OPENAI_KEY",
     "AZURE_OPENAI_EMBEDDING_DEPLOYMENT",
     "AZURE_SEARCH_ENDPOINT",
     "AZURE_SEARCH_KEY",
-    "AZURE_SEARCH_INDEX",
 ]
-for env in REQUIRED:
+for env in required:
     if not os.getenv(env):
-        raise ValueError(f"Brakuje {env}")
+        raise ValueError(f"Brakuje zmiennej {env}")
 
-# —————————— 2. embeddingi ——————————
+# 2. Embeddingi
 emb = AzureOpenAIEmbeddings(
-    deployment=os.getenv("AZURE_OPENAI_EMBEDDING_DEPLOYMENT"),
-    model=os.getenv("AZURE_OPENAI_EMBEDDING_DEPLOYMENT"),
-    azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
-    openai_api_key=os.getenv("AZURE_OPENAI_KEY"),
-    openai_api_type="azure",
-    openai_api_version="2023-07-01-preview",
+    azure_deployment=os.getenv("AZURE_OPENAI_EMBEDDING_DEPLOYMENT") or "",
+    model=os.getenv("AZURE_OPENAI_EMBEDDING_DEPLOYMENT") or "",
+    azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT") or "",
+    api_key=SecretStr(os.getenv("AZURE_OPENAI_KEY") or ""),
+    api_version="2023-07-01-preview",
 )
 
-# —————————— 3. JSON produktów ——————————
-json_path = Path(__file__).parent / "ask_rag" / "products.json"
-products = json.loads(json_path.read_text("utf-8")).get("products", [])
-print("🔁 Wczytano produkty:", len(products))
-prod_texts = [p.get("description", "") or p.get("name", "") for p in products]
-prod_ids = [p["id"] for p in products]
-prod_meta = [
-    {"id": p["id"], "name": p["name"], "price": p.get("price")} for p in products
-]
+# 3. Wczytanie produktów
+products_path = Path(__file__).parent / "ask_rag" / "products.json"
+products: list[dict[str, Any]] = json.loads(products_path.read_text("utf-8"))
 
-# —————————— 4. PDF regulamin ——————————
-pdf_path = Path(__file__).parent / "docs" / "REGULAMIN.pdf"
-loader = PyMuPDFLoader(str(pdf_path))
-pdf_docs = loader.load()  # zwraca listę Document
-# przypisz metadata
-for doc in pdf_docs:
-    doc.metadata["id"] = "pdf_" + str(uuid.uuid4())
-    doc.metadata["name"] = "Regulamin"
-    # doc.page_content automatycznie istnieje
-
-print("🔁 Wczytano regulamin PDF:", len(pdf_docs), "fragmentów")
-
-# —————————— 5. Azure Search (pojedynczy indeks) ——————————
-azure_search = AzureSearch(
-    azure_search_endpoint=os.getenv("AZURE_SEARCH_ENDPOINT"),
-    azure_search_key=os.getenv("AZURE_SEARCH_KEY"),
-    index_name=os.getenv("AZURE_SEARCH_INDEX"),
-    embedding_function=emb,
-    text_key="description",  # nazwa pola tekstowego w indeksie
-    vector_field_name="embedding",  # nazwa pola wektora
-    document_id_key="id",
-)
-
-# —————————— 6. Indeks JSON produktów ——————————
-# użyjemy upload_documents — trzeba przygotować ręcznie dokumenty
-prod_vecs = emb.embed_documents(prod_texts)
 prod_docs = []
-for p, vec, meta in zip(products, prod_vecs, prod_meta, strict=True):
+for p in products:
+    content = " ".join(
+        [
+            p.get("name", ""),
+            p.get("description", ""),
+            p.get("content", ""),
+            f"Cena: {p.get('price', 'brak ceny')} PLN",
+        ]
+    )
+    embedding = emb.embed_documents([content])[0]
     prod_docs.append(
         {
-            "id": meta["id"],
-            "name": meta["name"],
+            "id": p["id"],
+            "name": p.get("name", ""),
             "description": p.get("description", ""),
-            "embedding": vec,
+            "content": content,
+            "category": p.get("category", "brak"),
+            "embedding": embedding,
         }
     )
 
-# —————————— 7. Indeks PDF fragmentów ——————————
+print(f"🔁 Wczytano {len(prod_docs)} produktów")
+
+# 4. Wczytanie PDF i embedding
+pdf_path = Path(__file__).parent / "docs" / "REGULAMIN.pdf"
+loader = PyMuPDFLoader(str(pdf_path))
+pdf_docs = loader.load()
+
 pdf_docs_to_upload = []
 for doc in pdf_docs:
+    doc.metadata["id"] = "pdf_" + str(uuid.uuid4())
+    content = doc.page_content
+    embedding = emb.embed_documents([content])[0]
     pdf_docs_to_upload.append(
         {
             "id": doc.metadata["id"],
-            "name": doc.metadata["name"],
-            "description": doc.page_content,
-            "embedding": emb.embed_documents([doc.page_content])[0],
+            "filename": "REGULAMIN.pdf",
+            "content": content,
+            "embedding": embedding,
         }
     )
 
-# —————————— 8. Wgrywanie ——————————
-all_docs = prod_docs + pdf_docs_to_upload
-azure_search.client.upload_documents(documents=all_docs)
-print("✅ Wgrałem:", len(all_docs), "dokumentów do Azure Search.")
+print(f"📄 Wczytano {len(pdf_docs_to_upload)} fragmentów PDF")
+
+# 5. Upload do Azure Search
+azure_products = AzureSearch(
+    azure_search_endpoint=os.getenv("AZURE_SEARCH_ENDPOINT") or "",
+    azure_search_key=os.getenv("AZURE_SEARCH_KEY") or "",
+    index_name="products-index",
+    embedding_function=emb,
+    text_key="content",
+    vector_field_name="embedding",
+    document_id_key="id",
+)
+
+azure_regulamin = AzureSearch(
+    azure_search_endpoint=os.getenv("AZURE_SEARCH_ENDPOINT") or "",
+    azure_search_key=os.getenv("AZURE_SEARCH_KEY") or "",
+    index_name="regulamin-index",
+    embedding_function=emb,
+    text_key="content",
+    vector_field_name="embedding",
+    document_id_key="id",
+)
+
+azure_products.client.upload_documents(prod_docs)
+azure_regulamin.client.upload_documents(pdf_docs_to_upload)
+
+print("✅ Dokumenty zaindeksowane.")
