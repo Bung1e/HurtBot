@@ -4,6 +4,7 @@ import json
 import os
 import uuid
 from pathlib import Path
+from typing import Any
 
 from dotenv import load_dotenv
 from langchain_community.document_loaders import PyMuPDFLoader
@@ -32,17 +33,16 @@ for env in required:
 
 # 2. Embeddingi
 emb = AzureOpenAIEmbeddings(
-    deployment=os.getenv("AZURE_OPENAI_EMBEDDING_DEPLOYMENT"),
-    model=os.getenv("AZURE_OPENAI_EMBEDDING_DEPLOYMENT"),
-    azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
-    openai_api_key=os.getenv("AZURE_OPENAI_KEY"),
-    openai_api_type="azure",
-    openai_api_version="2023-07-01-preview",
+    azure_deployment=os.getenv("AZURE_OPENAI_EMBEDDING_DEPLOYMENT") or "",
+    model=os.getenv("AZURE_OPENAI_EMBEDDING_DEPLOYMENT") or "",
+    azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT") or "",
+    api_key=os.getenv("AZURE_OPENAI_KEY") or "",
+    api_version="2023-07-01-preview",
 )
 
 # 3. Wczytanie produktów
 products_path = Path(__file__).parent / "ask_rag" / "products.json"
-products = json.loads(products_path.read_text("utf-8"))
+products: list[dict[str, Any]] = json.loads(products_path.read_text("utf-8"))
 
 prod_docs = []
 for p in products:
@@ -91,8 +91,8 @@ print(f"📄 Wczytano {len(pdf_docs_to_upload)} fragmentów PDF")
 
 # 5. Upload do Azure Search
 azure_products = AzureSearch(
-    azure_search_endpoint=os.getenv("AZURE_SEARCH_ENDPOINT"),
-    azure_search_key=os.getenv("AZURE_SEARCH_KEY"),
+    azure_search_endpoint=os.getenv("AZURE_SEARCH_ENDPOINT") or "",
+    azure_search_key=os.getenv("AZURE_SEARCH_KEY") or "",
     index_name="products-index",
     embedding_function=emb,
     text_key="content",
@@ -101,8 +101,8 @@ azure_products = AzureSearch(
 )
 
 azure_regulamin = AzureSearch(
-    azure_search_endpoint=os.getenv("AZURE_SEARCH_ENDPOINT"),
-    azure_search_key=os.getenv("AZURE_SEARCH_KEY"),
+    azure_search_endpoint=os.getenv("AZURE_SEARCH_ENDPOINT") or "",
+    azure_search_key=os.getenv("AZURE_SEARCH_KEY") or "",
     index_name="regulamin-index",
     embedding_function=emb,
     text_key="content",
