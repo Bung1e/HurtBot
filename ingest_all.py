@@ -7,10 +7,10 @@ from pathlib import Path
 from typing import Any
 
 from dotenv import load_dotenv
-from pydantic import SecretStr
 from langchain_community.document_loaders import PyMuPDFLoader
 from langchain_community.vectorstores import AzureSearch
 from langchain_openai import AzureOpenAIEmbeddings
+from pydantic import SecretStr
 
 # 1. Wczytywanie zmiennych środowiskowych
 cfg = Path(__file__).parent / "local.settings.json"
