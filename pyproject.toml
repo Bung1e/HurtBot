@@ -14,7 +14,7 @@ dependencies = [
     "azure-search-documents==11.4.0",
     "langchain-openai>=0.1.0",
     "langchain-community>=0.1.0",
-    "openai==0.28.0",
+    "openai>=1.66.3",
     "requests==2.32.4",
     "python-dotenv==1.0.0",
     "azure-functions==1.23.0"
