@@ -1,20 +1,9 @@
-<<<<<<< HEAD
-=======
 # ingest_all.py
 
->>>>>>> refactor-rag-structure
 import json
 import os
 import uuid
 from pathlib import Path
-<<<<<<< HEAD
-
-from dotenv import load_dotenv
-from langchain_community.document_loaders import PyMuPDFLoader
-from langchain_community.vectorstores import AzureSearch
-from langchain_openai import AzureOpenAIEmbeddings
-=======
->>>>>>> refactor-rag-structure
 
 from dotenv import load_dotenv
 from langchain_community.document_loaders import PyMuPDFLoader
@@ -28,21 +17,7 @@ if cfg.exists():
     for k, v in data.items():
         os.environ.setdefault(k, v)
 
-<<<<<<< HEAD
-REQUIRED = [
-    "AZURE_OPENAI_ENDPOINT",
-    "AZURE_OPENAI_KEY",
-    "AZURE_OPENAI_EMBEDDING_DEPLOYMENT",
-    "AZURE_SEARCH_ENDPOINT",
-    "AZURE_SEARCH_KEY",
-    "AZURE_SEARCH_INDEX",
-]
-for env in REQUIRED:
-    if not os.getenv(env):
-        raise ValueError(f"Brakuje {env}")
-=======
 load_dotenv()
->>>>>>> refactor-rag-structure
 
 required = [
     "AZURE_OPENAI_ENDPOINT",
@@ -65,21 +40,9 @@ emb = AzureOpenAIEmbeddings(
     openai_api_version="2023-07-01-preview",
 )
 
-<<<<<<< HEAD
-# —————————— 3. JSON produktów ——————————
-json_path = Path(__file__).parent / "ask_rag" / "products.json"
-products = json.loads(json_path.read_text("utf-8")).get("products", [])
-print("🔁 Wczytano produkty:", len(products))
-prod_texts = [p.get("description", "") or p.get("name", "") for p in products]
-prod_ids = [p["id"] for p in products]
-prod_meta = [
-    {"id": p["id"], "name": p["name"], "price": p.get("price")} for p in products
-]
-=======
 # 3. Wczytanie produktów
 products_path = Path(__file__).parent / "ask_rag" / "products.json"
 products = json.loads(products_path.read_text("utf-8"))
->>>>>>> refactor-rag-structure
 
 prod_docs = []
 for p in products:
@@ -132,38 +95,6 @@ azure_products = AzureSearch(
     azure_search_key=os.getenv("AZURE_SEARCH_KEY"),
     index_name="products-index",
     embedding_function=emb,
-<<<<<<< HEAD
-    text_key="description",  # nazwa pola tekstowego w indeksie
-    vector_field_name="embedding",  # nazwa pola wektora
-    document_id_key="id",
-)
-
-# —————————— 6. Indeks JSON produktów ——————————
-# użyjemy upload_documents — trzeba przygotować ręcznie dokumenty
-prod_vecs = emb.embed_documents(prod_texts)
-prod_docs = []
-for p, vec, meta in zip(products, prod_vecs, prod_meta, strict=True):
-    prod_docs.append(
-        {
-            "id": meta["id"],
-            "name": meta["name"],
-            "description": p.get("description", ""),
-            "embedding": vec,
-        }
-    )
-
-# —————————— 7. Indeks PDF fragmentów ——————————
-pdf_docs_to_upload = []
-for doc in pdf_docs:
-    pdf_docs_to_upload.append(
-        {
-            "id": doc.metadata["id"],
-            "name": doc.metadata["name"],
-            "description": doc.page_content,
-            "embedding": emb.embed_documents([doc.page_content])[0],
-        }
-    )
-=======
     text_key="content",
     vector_field_name="embedding",
     document_id_key="id",
@@ -181,6 +112,5 @@ azure_regulamin = AzureSearch(
 
 azure_products.client.upload_documents(prod_docs)
 azure_regulamin.client.upload_documents(pdf_docs_to_upload)
->>>>>>> refactor-rag-structure
 
 print("✅ Dokumenty zaindeksowane.")

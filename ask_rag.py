@@ -1,15 +1,5 @@
-<<<<<<< HEAD
-import json
-import os
-from pathlib import Path
 
-from dotenv import load_dotenv
-from langchain.chains import RetrievalQA
-from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
-from langchain_community.retrievers import AzureAISearchRetriever
-=======
 # File: ask_rag.py
->>>>>>> refactor-rag-structure
 
 import json
 import logging
@@ -43,51 +33,13 @@ if cfg.exists():
 
 load_dotenv()
 
-<<<<<<< HEAD
-# 3️⃣ Weryfikacja zmiennych środowiskowych
-required = [
-    "AZURE_OPENAI_ENDPOINT",
-    "AZURE_OPENAI_KEY",
-    "AZURE_OPENAI_CHAT_DEPLOYMENT",
-    "AZURE_SEARCH_ENDPOINT",
-    "AZURE_SEARCH_KEY",
-    "AZURE_SEARCH_INDEX",
-    "AZURE_FOUNDRY_ENDPOINT",
-    "AZURE_FOUNDRY_KEY",
-]
-missing = [v for v in required if not os.getenv(v)]
-if missing:
-    raise ValueError(f"Brakuje zmiennej(y): {', '.join(missing)}")
-=======
 # ——————————————————————
 # 3. Wczytaj produkty z JSON
 # ——————————————————————
 products_path = Path(__file__).parent / "products.json"
 products = json.loads(products_path.read_text("utf-8"))
->>>>>>> refactor-rag-structure
 
 
-<<<<<<< HEAD
-
-# 5️⃣ Import potrzebnych komponentów
-def ask_rag(query: str) -> str:
-    retriever = AzureAISearchRetriever(
-        content_key="description", index_name=os.getenv("AZURE_SEARCH_INDEX"), top_k=3
-    )
-    llm = AzureAIChatCompletionsModel(
-        endpoint=os.getenv("AZURE_FOUNDRY_ENDPOINT"),
-        credential=os.getenv("AZURE_FOUNDRY_KEY"),
-        model=os.getenv("AZURE_OPENAI_CHAT_DEPLOYMENT"),
-        temperature=0.0,
-    )
-    chain = RetrievalQA.from_chain_type(
-        llm=llm, retriever=retriever, return_source_documents=False
-    )
-    res = chain.invoke({"query": query})
-    return res.get("result") or res.get("answer") or ""
-
-
-=======
 def find_alternatives_by_category(
     category: str,
     exclude_id: str | None = None,
@@ -181,7 +133,6 @@ def ask_rag(query: str) -> str:
 # ——————————————————————
 # 5. Test lokalny
 # ——————————————————————
->>>>>>> refactor-rag-structure
 if __name__ == "__main__":
     q = input("Zapytaj o produkt lub regulamin: ")
     print("\nOdpowiedź:")
