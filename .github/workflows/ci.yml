@@ -31,11 +31,7 @@ jobs:
       run: |
         source .venv/bin/activate
         uv pip install -e ".[dev]"
-<<<<<<< HEAD
-        
-=======
 
->>>>>>> refactor-rag-structure
     - name: Run Ruff
       run: |
         source .venv/bin/activate
@@ -50,4 +46,4 @@ jobs:
     - name: Run tests with coverage
       run: |
         source .venv/bin/activate
-        pytest --cov=src --cov-report=term --cov-fail-under=70
+        pytest --cov=ask_rag --cov-report=term --cov-fail-under=70
