@@ -40,7 +40,9 @@ def find_alternatives_by_category(
     max_results: int = 3,
 ) -> list[dict[str, Any]]:
     candidates = [
-        p for p in products if p.get("category") == category and p.get("id") != exclude_id
+        p
+        for p in products
+        if p.get("category") == category and p.get("id") != exclude_id
     ]
     return candidates[:max_results]
 
