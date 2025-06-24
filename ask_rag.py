@@ -1,4 +1,3 @@
-
 # File: ask_rag.py
 
 import json
