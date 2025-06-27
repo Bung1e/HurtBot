@@ -4,7 +4,7 @@ import json
 import logging
 import os
 from pathlib import Path
-from typing import Any, List
+from typing import Any
 
 from dotenv import load_dotenv
 from langchain.chains.combine_documents import create_stuff_documents_chain
