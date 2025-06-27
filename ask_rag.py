@@ -4,7 +4,7 @@ import json
 import logging
 import os
 from pathlib import Path
-from typing import Any
+from typing import Any, List
 
 from dotenv import load_dotenv
 from langchain.chains.combine_documents import create_stuff_documents_chain
@@ -47,7 +47,8 @@ def find_alternatives_by_category(
     return candidates[:max_results]
 
 
-def safe_invoke(retriever, query: str):
+def safe_invoke(retriever: Any, query: str) -> list[Any]:
+    """Safely invoke retriever and filter out documents with invalid content."""
     try:
         docs = retriever.invoke(query)
         valid_docs = []
