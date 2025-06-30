@@ -17,7 +17,9 @@ dependencies = [
     "openai>=1.66.3",
     "requests==2.32.4",
     "python-dotenv==1.0.0",
-    "azure-functions==1.23.0"
+    "azure-functions==1.23.0",
+    "pytest",
+    "pytest-cov"
 ]
 
 [project.optional-dependencies]
@@ -47,6 +49,16 @@ ignore = []
 
 [tool.ruff.lint.isort]
 known-first-party = ["hurtbot"] 
+
+[tool.pytest.ini_options]
+addopts = "--cov=src --cov-report=term-missing"
+testpaths = ["tests"]
+
+[tool.coverage.run]
+omit = [
+    "src/ingest_all.py",
+    "src/frontend.py"
+]
 
 [tool.mypy]
 python_version = "3.12"

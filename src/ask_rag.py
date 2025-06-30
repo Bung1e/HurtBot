@@ -21,7 +21,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # 2. Wczytaj środowisko
-cfg = Path(__file__).parent / "local.settings.json"
+cfg = Path(__file__).parent.parent / "local.settings.json"
 if cfg.exists():
     data = json.loads(cfg.read_text("utf-8")).get("Values", {})
     for k, v in data.items():
@@ -30,7 +30,7 @@ if cfg.exists():
 load_dotenv()
 
 # 3. Wczytaj dane produktów
-products_path = Path(__file__).parent / "products.json"
+products_path = Path(__file__).parent.parent / "data" / "products.json"
 products: list[dict[str, Any]] = json.loads(products_path.read_text("utf-8"))
 
 

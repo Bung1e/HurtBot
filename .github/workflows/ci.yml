@@ -46,4 +46,5 @@ jobs:
     - name: Run tests with coverage
       run: |
         source .venv/bin/activate
-        pytest --cov=ask_rag --cov-report=term --cov-fail-under=70
+        pytest --cov=src --cov-report=term --cov-fail-under=70
+
