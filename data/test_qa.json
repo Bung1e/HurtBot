@@ -2,72 +2,72 @@
   {
     "id": 1,
     "question": "Czy macie farby akrylowe białe 10L?",
-    "expected_answer": "Tak, posiadamy Farba akrylowa biała matowa 10L (PROD_001) w cenie 207 PLN netto oraz Farba akrylowa biała półmat 10L (PROD_002) w cenie 263 PLN netto."
+    "expected_answer": "Tak, posiadamy Farba akrylowa biała matowa 10L w cenie 207 PLN netto oraz Farba akrylowa biała półmat 10L w cenie 263 PLN netto."
   },
   {
     "id": 2,
     "question": "Potrzebuję wełnę mineralną 15cm, co macie?",
-    "expected_answer": "Mamy Wełna mineralna 15cm 5m² (PROD_052) w cenie 71 PLN netto. Jest to wełna mineralna do ocieplenia."
+    "expected_answer": "Mamy Wełna mineralna 15cm 5m² w cenie 71 PLN netto. Jest to wełna mineralna do ocieplenia."
   },
   {
     "id": 3,
     "question": "Jaka cena żarówek LED E27?",
-    "expected_answer": "Żarówka LED E27 10W 4000K (PROD_009) kosztuje 190 PLN netto. Jest to energooszczędna żarówka LED."
+    "expected_answer": "Żarówka LED E27 10W 4000K kosztuje 190 PLN netto. Jest to energooszczędna żarówka LED."
   },
   {
     "id": 4,
     "question": "Szukam narzędzi elektrycznych Bosch",
-    "expected_answer": "W ofercie posiadamy Wiertarka udarowa 18V Li-Ion (PROD_006) w cenie 135 PLN netto oraz Wkrętarka akumulatorowa 12V (PROD_017) w cenie 25 PLN netto."
+    "expected_answer": "W ofercie posiadamy Wiertarka udarowa 18V Li-Ion w cenie 135 PLN netto oraz Wkrętarka akumulatorowa 12V w cenie 25 PLN netto."
   },
   {
     "id": 5,
     "question": "Które farby są w kolorze kremowym?",
-    "expected_answer": "Posiadamy Farba akrylowa krem 5L (PROD_004) w cenie 200 PLN netto i Farba lateksowa krem 5L (PROD_016) w cenie 84 PLN netto."
+    "expected_answer": "Posiadamy Farba akrylowa krem 5L w cenie 200 PLN netto i Farba lateksowa krem 5L w cenie 84 PLN netto."
   },
   {
     "id": 6,
-    "question": "Co to jest produkt PROD_052?",
-    "expected_answer": "PROD_052 to Wełna mineralna 15cm 5m², przeznaczona do ocieplenia, w cenie 71 PLN netto."
+    "question": "Co to jest produkt Piła ręczna?",
+    "expected_answer": "Piła ręczna to Piła uniwersalna do drewna, Cena: 142 PLN netto."
   },
   {
     "id": 7,
     "question": "Macie kleje do płytek ceramicznych?",
-    "expected_answer": "Tak, mamy Klej do płytek C1 25kg (PROD_008) w cenie 95 PLN netto oraz Woś klejący do płytek 25kg (PROD_045) w cenie 229 PLN netto."
+    "expected_answer": "Tak, mamy Klej do płytek C1 25kg w cenie 95 PLN netto oraz Woś klejący do płytek 25kg w cenie 229 PLN netto."
   },
   {
     "id": 8,
     "question": "Szukam rur miedzianych",
-    "expected_answer": "Mamy Rura miedziana 15mm 5m (PROD_022) do instalacji wody, w cenie 138 PLN netto."
+    "expected_answer": "Mamy Rura miedziana 15mm 5m do instalacji wody, w cenie 138 PLN netto."
   },
   {
     "id": 9,
     "question": "Jakie są najtańsze farby w ofercie?",
-    "expected_answer": "Najtańszymi produktami w ofercie są Wkrętarka akumulatorowa 12V (PROD_017) za 25 PLN netto i Wkrętak krzyżakowy PH2 (PROD_031) również za 25 PLN netto."
+    "expected_answer": "Najtańszymi produktami w ofercie są Wkrętarka akumulatorowa 12V za 25 PLN netto i Wkrętak krzyżakowy PH2 również za 25 PLN netto."
   },
   {
     "id": 10,
     "question": "Potrzebuję cement wysokiej wytrzymałości",
-    "expected_answer": "Posiadamy Cement portlandzki CEM I 42.5R 25kg (PROD_013) w cenie 249 PLN netto, który jest cementem wysokiej wytrzymałości."
+    "expected_answer": "Posiadamy Cement portlandzki CEM I 42.5R 25kg w cenie 249 PLN netto, który jest cementem wysokiej wytrzymałości."
   },
   {
     "id": 11,
     "question": "Które produkty mają certyfikat CE?",
-    "expected_answer": "Wiele naszych produktów posiada certyfikat CE, na przykład: Farba akrylowa biała matowa 10L (PROD_001), Wiertarka udarowa 18V Li-Ion (PROD_006), Klej do płytek C1 25kg (PROD_008), Żarówka LED E27 10W 4000K (PROD_009), Rura PVC 110mm 3m (PROD_010) i wiele innych."
+    "expected_answer": "Wiele naszych produktów posiada certyfikat CE, na przykład: Farba akrylowa biała matowa 10L, Wiertarka udarowa 18V Li-Ion, Klej do płytek C1 25kg, Żarówka LED E27 10W 4000K, Rura PVC 110mm 3m i wiele innych."
   },
   {
     "id": 12,
     "question": "Szukam oświetlenia LED do biura",
-    "expected_answer": "Mamy Oprawa LED 36W 4000K 120cm (PROD_053) w cenie 109 PLN netto, która jest oprawą liniową do biur."
+    "expected_answer": "Mamy Oprawa LED 36W 4000K 120cm w cenie 109 PLN netto, która jest oprawą liniową do biur."
   },
   {
     "id": 13,
-    "question": "Co polecacie zamiast produktu PROD_001?",
-    "expected_answer": "Zamiast produktu PROD_001 (Farba akrylowa biała matowa 10L) możemy polecić Farba akrylowa biała półmat 10L (PROD_002) w cenie 263 PLN netto lub Farba akrylowa szara 10L (PROD_011) w cenie 233 PLN netto, jeśli szukasz innej opcji koloru."
+    "question": "Co polecacie zamiast farby akrylowa biała matowa 10L?",
+    "expected_answer": "Zamiast produktu Farby akrylowa biała matowa 10L możemy polecić Farba akrylowa biała półmat 10L w cenie 263 PLN netto lub Farba akrylowa szara 10L w cenie 233 PLN netto, jeśli szukasz innej opcji koloru."
   },
   {
     "id": 14,
     "question": "Macie baterie umywalkowe?",
-    "expected_answer": "Tak, mamy Kran jednouchwytowy umywalkowy (PROD_055) w cenie 294 PLN netto, który jest baterią umywalkową chromowaną."
+    "expected_answer": "Tak, mamy Kran jednouchwytowy umywalkowy w cenie 294 PLN netto, który jest baterią umywalkową chromowaną."
   },
   {
     "id": 15,
@@ -126,27 +126,27 @@
   },
   {
     "id": 26,
-    "question": "Kupiłem farbę PROD_001, ale kolor nie pasuje. Mogę zwrócić?",
-    "expected_answer": "Odnośnie produktów, mamy: Farba akrylowa biała matowa 10L (PROD_001) za 207 PLN netto. W kwestii zwrotów i reklamacji, prosimy o zapoznanie się z naszym regulaminem lub kontakt z obsługą klienta w celu uzyskania szczegółowych informacji o procedurze."
+    "question": "Kupiłem Farba akrylowa biała matowa, ale kolor nie pasuje. Mogę zwrócić?",
+    "expected_answer": "Odnośnie produktów, mamy: Farba akrylowa biała matowa 10L za 207 PLN netto. W kwestii zwrotów i reklamacji, prosimy o zapoznanie się z naszym regulaminem lub kontakt z obsługą klienta w celu uzyskania szczegółowych informacji o procedurze."
   },
   {
     "id": 27,
     "question": "Potrzebuję wełnę mineralną, ale nie wiem jaką grubość wybrać. Czy mogę skonsultować?",
-    "expected_answer": "Odnośnie produktów, mamy: Wełna mineralna 15cm 5m² (PROD_052) za 71 PLN netto. W sprawie wyboru grubości wełny mineralnej lub innych kwestii technicznych, zapraszamy do kontaktu z naszymi doradcami, którzy chętnie udzielą fachowej pomocy."
+    "expected_answer": "Odnośnie produktów, mamy: Wełna mineralna 15cm 5m² za 71 PLN netto. W sprawie wyboru grubości wełny mineralnej lub innych kwestii technicznych, zapraszamy do kontaktu z naszymi doradcami, którzy chętnie udzielą fachowej pomocy."
   },
   {
     "id": 28,
-    "question": "Cement PROD_013 został uszkodzony w transporcie. Co dalej?",
-    "expected_answer": "Odnośnie produktów, mamy: Cement portlandzki CEM I 42.5R 25kg (PROD_013) za 249 PLN netto. W kwestii zwrotów i reklamacji, prosimy o zapoznanie się z naszym regulaminem lub kontakt z obsługą klienta w celu uzyskania szczegółowych informacji o procedurze."
+    "question": "Cement portlandzki CEM został uszkodzony w transporcie. Co dalej?",
+    "expected_answer": "Odnośnie produktów, mamy: Cement portlandzki CEM I 42.5R 25kg za 249 PLN netto. W kwestii zwrotów i reklamacji, prosimy o zapoznanie się z naszym regulaminem lub kontakt z obsługą klienta w celu uzyskania szczegółowych informacji o procedurze."
   },
   {
     "id": 29,
     "question": "Szukam kleju do płytek i chcę wiedzieć o warunkach zwrotu",
-    "expected_answer": "Odnośnie produktów, mamy: Klej do płytek C1 25kg (PROD_008) za 95 PLN netto, Woś klejący do płytek 25kg (PROD_045) za 229 PLN netto. W kwestii zwrotów i reklamacji, prosimy o zapoznanie się z naszym regulaminem lub kontakt z obsługą klienta w celu uzyskania szczegółowych informacji o procedurze."
+    "expected_answer": "Odnośnie produktów, mamy: Klej do płytek C1 25kg za 95 PLN netto, Woś klejący do płytek 25kg za 229 PLN netto. W kwestii zwrotów i reklamacji, prosimy o zapoznanie się z naszym regulaminem lub kontakt z obsługą klienta w celu uzyskania szczegółowych informacji o procedurze."
   },
   {
     "id": 30,
     "question": "Czy mogę zamówić żarówki LED hurtowo i jakie są rabaty?",
-    "expected_answer": "Odnośnie produktów, mamy: Żarówka LED E27 10W 4000K (PROD_009) za 190 PLN netto, Żarówka LED GU10 5W 3000K (PROD_030) za 87 PLN netto. Tak, oferujemy możliwość zamówień hurtowych oraz rabaty dla stałych klientów. Prosimy o kontakt z działem sprzedaży w celu omówienia szczegółów i warunków."
+    "expected_answer": "Odnośnie produktów, mamy: Żarówka LED E27 10W 4000K za 190 PLN netto, Żarówka LED GU10 5W 3000K za 87 PLN netto. Tak, oferujemy możliwość zamówień hurtowych oraz rabaty dla stałych klientów. Prosimy o kontakt z działem sprzedaży w celu omówienia szczegółów i warunków."
   }
 ]
