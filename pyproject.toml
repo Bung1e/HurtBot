@@ -7,32 +7,21 @@ authors = [
     {name = "Błażej Ostrowski"}
 ]
 dependencies = [
-    "fastapi>=0.104.0",
-    "streamlit>=1.34.0",
-    "azure-core>=1.28.0",
-<<<<<<< HEAD
-    "azure-identity==1.14.0",
-    "azure-search-documents==11.4.0",
-    "langchain-openai>=0.1.0",
-    "langchain-community>=0.1.0",
-    "openai>=1.66.3",
-    "requests==2.32.4",
-    "python-dotenv==1.0.0",
-    "azure-functions==1.23.0",
-    "pytest",
-    "pytest-cov"
-=======
-    "azure-identity==1.15.0",
-    "azure-search-documents==11.4.0",
-    "langchain-openai>=0.1.0",
-    "langchain-community>=0.1.0",
-    "langchain-azure-ai>=0.1.0",
-    "openai>=1.66.3",
-    "requests==2.32.4",
-    "python-dotenv==1.0.0",
-    "azure-functions==1.23.0"
->>>>>>> origin/feature/evaluation
+  "fastapi>=0.104.0",
+  "streamlit>=1.14.0",
+  "azure-core>=1.28.0",
+  "azure-identity>=1.14.0",
+  "azure-search-documents>=11.4.0",
+  "langchain-openai>=0.1.0",
+  "langchain-community>=0.1.0",
+  "openai>=1.66.3",
+  "requests>=2.32.4",
+  "python-dotenv>=1.0.0",
+  "azure-functions>=1.23.0",
+  "pytest",
+  "pytest-cov"
 ]
+
 
 [project.optional-dependencies]
 dev = [
@@ -41,14 +30,10 @@ dev = [
     "pytest-cov>=4.1.0",
     "black>=25.1.0",
     "ruff>=0.3.0",
-<<<<<<< HEAD
-    "types-requests"
-=======
     "types-requests",
     "prompttools",
     "matplotlib",
     "sentence-transformers"
->>>>>>> origin/feature/evaluation
 ]
 
 [build-system]
