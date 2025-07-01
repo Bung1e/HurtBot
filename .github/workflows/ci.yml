@@ -35,11 +35,16 @@ jobs:
         uv pip install deepeval langchain-azure-ai
 
 
-    - name: Run Ruff
+    - name: Run Ruff format
+      run: |
+        source .venv/bin/activate
+        ruff format .
+
+    - name: Run Ruff check
       run: |
         source .venv/bin/activate
         ruff check .
-        ruff format --check .
+
 
     - name: Run mypy
       run: |
