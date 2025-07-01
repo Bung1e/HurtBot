@@ -1,10 +1,9 @@
 import json
 import logging
-import traceback
 
 from azure.functions import HttpRequest, HttpResponse
 from azure.functions.decorators import FunctionApp
-from dotenv import load_dotenv
+
 from src.ask_rag import ask_rag
 
 # ——————————————————————

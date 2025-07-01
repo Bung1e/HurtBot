@@ -1,6 +1,6 @@
+
 import matplotlib.pyplot as plt
 import pandas as pd
-from typing import Any
 
 plik: str = "eval/result.json"
 df: pd.DataFrame = pd.read_json(plik)

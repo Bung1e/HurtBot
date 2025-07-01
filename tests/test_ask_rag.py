@@ -1,13 +1,16 @@
 import sys
 from pathlib import Path
+
 sys.path.append(str(Path(__file__).resolve().parents[1] / "src"))
 
 import os
-from deepeval.models.base_model import DeepEvalBaseLLM
+
 from deepeval import evaluate
 from deepeval.metrics import AnswerRelevancyMetric
+from deepeval.models.base_model import DeepEvalBaseLLM
 from deepeval.test_case import LLMTestCase
 from langchain_openai import AzureChatOpenAI
+
 from ask_rag import ask_rag
 
 
@@ -43,10 +46,19 @@ def test_ask_rag_relevancy_eval():
     test_case = LLMTestCase(
         input=question,
         actual_output=answer,
-        retrieval_context=["Regulamin mówi, że produkt można zwrócić do 30 dni od zakupu."]
+        retrieval_context=["Regulamin mówi, że produkt można zwrócić "
+        "do 30 dni od zakupu."]
     )
 
     metric = AnswerRelevancyMetric(threshold=0.7, model=azure_model)
     results = evaluate([test_case], [metric])
 
-    assert results[0].score >= 0.7, f"Odpowiedź była zbyt słabo związana z kontekstem (score={results[0].score})"
+    min_acceptable_score = 0.7
+
+    assert results[0].score >= min_acceptable_score, (
+        "Odpowiedź była zbyt słabo związana z kontekstem "
+        f"(score={results[0].score})"
+    )
+
+
+

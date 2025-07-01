@@ -1,13 +1,13 @@
 import json
-import os
 from pathlib import Path
+
 from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
 
 # ——————————————————————————————————————————
 # 1. Wczytaj dane z local.settings.json
 # ——————————————————————————————————————————
 settings_path = Path(__file__).resolve().parents[1] / "local.settings.json"
-with open(settings_path, "r", encoding="utf-8") as f:
+with open(settings_path, encoding="utf-8") as f:
     settings = json.load(f)["Values"]
 
 AZURE_FOUNDRY_ENDPOINT = settings["AZURE_FOUNDRY_ENDPOINT"]
@@ -38,7 +38,8 @@ Oceń jakość odpowiedzi modelu w porównaniu do oczekiwanej odpowiedzi.
 {model}
 
 ### Zadanie:
-Oceń zgodność i trafność odpowiedzi modelu względem oczekiwanej odpowiedzi w skali od 0.0 do 1.0.
+Oceń zgodność i trafność odpowiedzi modelu względem oczekiwanej 
+odpowiedzi w skali od 0.0 do 1.0.
 Zwróć tylko liczbę zmiennoprzecinkową.
 
 Odpowiedź:
@@ -56,7 +57,7 @@ Odpowiedź:
 # 4. Główna pętla oceniająca wszystkie odpowiedzi
 # ——————————————————————————————————————————
 def main():
-    with open("model_answers.json", "r", encoding="utf-8") as f:
+    with open("model_answers.json", encoding="utf-8") as f:
         data = json.load(f)
 
     results = []
