@@ -1,5 +1,3 @@
-# mypy: disable-error-code=no-untyped-def
-
 import sys
 from pathlib import Path
 
