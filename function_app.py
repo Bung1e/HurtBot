@@ -5,13 +5,19 @@ import traceback
 from azure.functions import HttpRequest, HttpResponse
 from azure.functions.decorators import FunctionApp
 
-from src.ask_rag import ask_rag
+from ask_rag import ask_rag
 
-# 1. Logowanie
-logging.basicConfig(level=logging.INFO, format="[%(asctime)s] [%(levelname)s] %(message)s")
+# ——————————————————————
+# 1. Konfiguracja logowania
+# ——————————————————————
+logging.basicConfig(
+    level=logging.INFO, format="[%(asctime)s] [%(levelname)s] %(message)s"
+)
 logger = logging.getLogger(__name__)
 
-# 2. Azure Function
+# ——————————————————————
+# 2. Azure Function App
+# ——————————————————————
 app = FunctionApp()
 
 
