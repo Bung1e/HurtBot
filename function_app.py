@@ -4,8 +4,8 @@ import traceback
 
 from azure.functions import HttpRequest, HttpResponse
 from azure.functions.decorators import FunctionApp
-
-from ask_rag import ask_rag
+from dotenv import load_dotenv
+from src.ask_rag import ask_rag
 
 # ——————————————————————
 # 1. Konfiguracja logowania
