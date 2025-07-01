@@ -28,11 +28,12 @@ jobs:
       run: |
         uv venv
 
-    - name: Install dependencies (including dev + deepeval)
+    - name: Install dependencies (including deepeval + langchain_azure_ai)
       run: |
         source .venv/bin/activate
         uv pip install -e ".[dev]"
-        uv pip install deepeval
+        uv pip install deepeval langchain-azure-ai
+
 
     - name: Run Ruff
       run: |
