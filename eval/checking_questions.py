@@ -24,6 +24,7 @@ llm = AzureAIChatCompletionsModel(
     temperature=0.0,
 )
 
+
 # ——————————————————————————————————————————
 # 3. Funkcja oceniająca odpowiedź modelu
 # ——————————————————————————————————————————
@@ -53,6 +54,7 @@ Odpowiedź:
         print("Błąd parsowania:", e)
         return 0.0
 
+
 # ——————————————————————————————————————————
 # 4. Główna pętla oceniająca wszystkie odpowiedzi
 # ——————————————————————————————————————————
@@ -71,6 +73,7 @@ def main():
 
     with open("scored_answers.json", "w", encoding="utf-8") as f:
         json.dump(results, f, ensure_ascii=False, indent=2)
+
 
 if __name__ == "__main__":
     main()

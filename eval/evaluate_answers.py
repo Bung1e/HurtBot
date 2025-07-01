@@ -36,7 +36,7 @@ df: pd.DataFrame = pd.DataFrame(data)
 def eval_row(row: pd.Series) -> dict[str, float]:
     # autoeval = autoeval_scoring(
     #     row, row["expected_answer"], response_column_name="model_answer"
-    #)
+    # )
     semsim: float = semantic_similarity(
         row, row["expected_answer"], response_column_name="model_answer"
     )
@@ -46,8 +46,9 @@ def eval_row(row: pd.Series) -> dict[str, float]:
     }
 
 
-results: list[dict[str, float]] = [eval_row(row) for _, row in tqdm(df.iterrows(), 
-total=len(df))]
+results: list[dict[str, float]] = [
+    eval_row(row) for _, row in tqdm(df.iterrows(), total=len(df))
+]
 
 results_df: pd.DataFrame = pd.DataFrame(results)
 df = pd.concat([df, results_df], axis=1)

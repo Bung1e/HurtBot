@@ -36,7 +36,7 @@ def test_ask_rag_relevancy_eval():
         openai_api_key=os.getenv("AZURE_OPENAI_KEY"),
         openai_api_version="2023-05-15",
         azure_deployment=os.getenv("AZURE_OPENAI_CHAT_DEPLOYMENT"),
-        azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT")
+        azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
     )
     azure_model = AzureOpenAIModel(chat)
 
@@ -46,8 +46,9 @@ def test_ask_rag_relevancy_eval():
     test_case = LLMTestCase(
         input=question,
         actual_output=answer,
-        retrieval_context=["Regulamin mówi, że produkt można zwrócić "
-        "do 30 dni od zakupu."]
+        retrieval_context=[
+            "Regulamin mówi, że produkt można zwrócić do 30 dni od zakupu."
+        ],
     )
 
     metric = AnswerRelevancyMetric(threshold=0.7, model=azure_model)
@@ -56,9 +57,5 @@ def test_ask_rag_relevancy_eval():
     min_acceptable_score = 0.7
 
     assert results[0].score >= min_acceptable_score, (
-        "Odpowiedź była zbyt słabo związana z kontekstem "
-        f"(score={results[0].score})"
+        f"Odpowiedź była zbyt słabo związana z kontekstem (score={results[0].score})"
     )
-
-
-

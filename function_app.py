@@ -34,14 +34,12 @@ def ask_rag_func(req: HttpRequest) -> HttpResponse:
         answer = ask_rag(query)
 
         return HttpResponse(
-            json.dumps({"answer": answer}),
-            status_code=200,
-            mimetype="application/json"
+            json.dumps({"answer": answer}), status_code=200, mimetype="application/json"
         )
 
     except Exception:
         logger.exception("❌ Błąd podczas obsługi zapytania.")
         return HttpResponse(
             "Wystąpił błąd serwera — nie udało się przetworzyć zapytania.",
-            status_code=500
+            status_code=500,
         )
