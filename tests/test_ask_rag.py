@@ -1,3 +1,5 @@
+# mypy: disable-error-code=no-untyped-def
+
 import sys
 from pathlib import Path
 
@@ -31,7 +33,7 @@ class AzureOpenAIModel(DeepEvalBaseLLM):
         return "AzureOpenAI_custom"
 
 
-def test_ask_rag_relevancy_eval():
+def test_ask_rag_relevancy_eval(): 
     chat = AzureChatOpenAI(
         openai_api_key=os.getenv("AZURE_OPENAI_KEY"),
         openai_api_version="2023-05-15",
