@@ -8,7 +8,6 @@ authors = [
 ]
 dependencies = [
   "fastapi>=0.104.0",
-  "streamlit>=1.14.0",
   "azure-core>=1.28.0",
   "azure-identity>=1.14.0",
   "azure-search-documents>=11.4.0",
@@ -17,7 +16,8 @@ dependencies = [
   "openai>=1.66.3",
   "requests>=2.32.4",
   "python-dotenv>=1.0.0",
-  "azure-functions>=1.23.0"
+  "azure-functions>=1.23.0"l,
+  "chainlit"
 ]
 
 
