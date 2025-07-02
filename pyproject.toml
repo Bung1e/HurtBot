@@ -16,7 +16,7 @@ dependencies = [
   "openai>=1.66.3",
   "requests>=2.32.4",
   "python-dotenv>=1.0.0",
-  "azure-functions>=1.23.0"l,
+  "azure-functions>=1.23.0",
   "chainlit"
 ]
 
