@@ -1,0 +1,51 @@
+from azure.search.documents.indexes import SearchIndexClient
+from azure.search.documents.indexes.models import (
+    SearchIndex, SimpleField, SearchFieldDataType,
+    SearchableField, VectorSearch, VectorSearchAlgorithmConfiguration, VectorSearchProfile, SearchField
+)
+from azure.core.credentials import AzureKeyCredential
+import os
+
+endpoint = os.getenv("AZURE_SEARCH_ENDPOINT")
+key = os.getenv("AZURE_SEARCH_KEY")
+
+client = SearchIndexClient(endpoint, AzureKeyCredential(key))
+
+index_name = "products-index"
+
+fields = [
+    SimpleField(name="id", type=SearchFieldDataType.String, key=True, filterable=True, retrievable=True, stored=True),
+    SearchableField(name="name", type=SearchFieldDataType.String),
+    SearchableField(name="description", type=SearchFieldDataType.String),
+    SearchableField(name="category", type=SearchFieldDataType.String, filterable=True),
+    SearchableField(name="content", type=SearchFieldDataType.String),
+    SearchField(
+        name="embedding",
+        type=SearchFieldDataType.Collection(SearchFieldDataType.Single),
+        searchable=True,
+        vector_search_dimensions=1536,
+        vector_search_profile_name="myHnswProfile"
+    ),
+]
+
+vector_search = VectorSearch(
+    algorithms=[
+        VectorSearchAlgorithmConfiguration(
+            name="default",
+            kind="hnsw",
+            hnsw_parameters={"metric": "cosine", "m": 4, "efConstruction": 400, "efSearch": 500},
+        ),
+    ],
+    profiles=[
+        VectorSearchProfile(name="myHnswProfile", algorithm="default"),
+    ]
+)
+
+index = SearchIndex(
+    name=index_name,
+    fields=fields,
+    vector_search=vector_search,
+)
+
+client.create_index(index)
+print("✅ Utworzono indeks 'products-index'")

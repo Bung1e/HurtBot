@@ -21,7 +21,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # 2. Wczytaj środowisko
-cfg = Path(__file__).parent / "local.settings.json"
+cfg = Path(__file__).parent.parent / "local.settings.json"
 if cfg.exists():
     data = json.loads(cfg.read_text("utf-8")).get("Values", {})
     for k, v in data.items():
@@ -30,7 +30,7 @@ if cfg.exists():
 load_dotenv()
 
 # 3. Wczytaj dane produktów
-products_path = Path(__file__).parent / "products.json"
+products_path = Path(__file__).parent.parent / "data" / "products.json"
 products: list[dict[str, Any]] = json.loads(products_path.read_text("utf-8"))
 
 
@@ -45,26 +45,6 @@ def find_alternatives_by_category(
         if p.get("category") == category and p.get("id") != exclude_id
     ]
     return candidates[:max_results]
-
-
-def safe_invoke(retriever: Any, query: str) -> list[Any]:
-    """Safely invoke retriever and filter out documents with invalid content."""
-    try:
-        docs = retriever.invoke(query)
-        valid_docs = []
-        for doc in docs:
-            if isinstance(doc.page_content, str) and doc.page_content.strip():
-                valid_docs.append(doc)
-            else:
-                logger.warning(
-                    "Filtered out document with invalid content: %r | %r",
-                    doc.page_content,
-                    doc.metadata,
-                )
-        return valid_docs
-    except Exception as e:
-        logger.error(f"Error invoking retriever: {e}")
-        return []
 
 
 # 4. Główna funkcja RAG
@@ -92,10 +72,8 @@ def ask_rag(query: str) -> str:
             api_key=search_api_key,
         )
 
-        docs1 = safe_invoke(retriever1, query)
-        docs2 = safe_invoke(retriever2, query)
-        # docs1 = retriever1.invoke(query)
-        # docs2 = retriever2.invoke(query)
+        docs1 = retriever1.invoke(query)
+        docs2 = retriever2.invoke(query)
         all_docs = docs1 + docs2
 
         logger.info(f"Liczba dokumentów znalezionych: {len(all_docs)}")

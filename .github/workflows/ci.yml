@@ -9,8 +9,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout code
+      uses: actions/checkout@v4
 
     - name: Set up Python
       uses: actions/setup-python@v5
@@ -25,18 +27,24 @@ jobs:
     - name: Create virtual environment
       run: |
         uv venv
-        source .venv/bin/activate
 
-    - name: Install dependencies
+    - name: Install dependencies (including deepeval + langchain_azure_ai)
       run: |
         source .venv/bin/activate
         uv pip install -e ".[dev]"
+        uv pip install deepeval langchain-azure-ai
 
-    - name: Run Ruff
+
+    - name: Run Ruff format
+      run: |
+        source .venv/bin/activate
+        ruff format .
+
+    - name: Run Ruff check
       run: |
         source .venv/bin/activate
         ruff check .
-        ruff format --check .
+
 
     - name: Run mypy
       run: |

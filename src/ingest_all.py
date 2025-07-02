@@ -13,7 +13,7 @@ from langchain_openai import AzureOpenAIEmbeddings
 from pydantic import SecretStr
 
 # 1. Wczytywanie zmiennych środowiskowych
-cfg = Path(__file__).parent / "local.settings.json"
+cfg = Path(__file__).parent.parent / "local.settings.json"
 if cfg.exists():
     data = json.loads(cfg.read_text("utf-8")).get("Values", {})
     for k, v in data.items():
@@ -42,7 +42,7 @@ emb = AzureOpenAIEmbeddings(
 )
 
 # 3. Wczytanie produktów
-products_path = Path(__file__).parent / "ask_rag" / "products.json"
+products_path = Path(__file__).parent.parent / "data" / "products.json"
 products: list[dict[str, Any]] = json.loads(products_path.read_text("utf-8"))
 
 prod_docs = []
@@ -70,7 +70,7 @@ for p in products:
 print(f"🔁 Wczytano {len(prod_docs)} produktów")
 
 # 4. Wczytanie PDF i embedding
-pdf_path = Path(__file__).parent / "docs" / "REGULAMIN.pdf"
+pdf_path = Path(__file__).parent.parent / "docs" / "REGULAMIN.pdf"
 loader = PyMuPDFLoader(str(pdf_path))
 pdf_docs = loader.load()
 
