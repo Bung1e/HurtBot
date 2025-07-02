@@ -34,14 +34,12 @@ df: pd.DataFrame = pd.DataFrame(data)
 
 
 def eval_row(row: pd.Series) -> dict[str, float]:
-    # autoeval = autoeval_scoring(
-    #     row, row["expected_answer"], response_column_name="model_answer"
-    # )
+    
     semsim: float = semantic_similarity(
         row, row["expected_answer"], response_column_name="model_answer"
     )
     return {
-        # "autoeval_score": autoeval,
+        
         "semantic_similarity": semsim
     }
 
