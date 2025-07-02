@@ -1,47 +1,58 @@
 import os
 
+import chainlit as cl
 import requests
-import streamlit as st
 
-# Pobranie API_URL z .env lub użycie lokalnego endpointu
 API_URL = os.getenv("API_URL", "http://localhost:7071/api/ask_rag")
 
-st.set_page_config(page_title="🧠 HurtBot - Chat B2B", layout="centered")
-st.title("🧠 HurtBot - Chatbot B2B (lokalnie)")
+@cl.on_chat_start
+async def start():
+    await cl.Message(
+    content=(
+        "Hello! I'm HurtBot - your B2B assistant. "
+        "Ask me about products or rules!"
+        )
+    ).send()
 
-# Historia dialogu
-if "history" not in st.session_state:
-    st.session_state.history = []
-
-# Pole do wpisywania pytania
-query = st.text_input("Twoje pytanie:", key="input")
-if st.button("Wyślij") and query:
-    st.session_state.history.append({"user": query})
-    with st.spinner("Bot się zastanawia…"):
+@cl.on_message
+async def main(message: cl.Message):
+    
+    async with cl.Step(name="Searching information") as step:
+        step.input = message.content
+        
         try:
-            resp = requests.post(
+            response = requests.post(
                 API_URL,
-                json={"question": query},
+                json={"question": message.content},
                 headers={"Content-Type": "application/json"},
                 timeout=30,
             )
-            if resp.ok:
-                bot_ans = resp.json().get("answer", "").strip()
+            
+            if response.ok:
+                answer = response.json().get("answer", "")
+                step.output = answer
             else:
-                bot_ans = f"❗ Błąd API: {resp.status_code}"
+                answer = f"api error: {response.status_code}"
+                step.output = answer
+                
         except Exception as e:
-            bot_ans = f"❗ Błąd połączenia: {e}"
-        st.session_state.history.append({"bot": bot_ans})
-    st.rerun()
+            answer = f"connection error: {e!s}"
+            step.output = answer
+    
+    await cl.Message(content=answer).send()
 
-# Wyświetlanie historii czatu
-for msg in st.session_state.history:
-    if "user" in msg:
-        st.markdown(f"**Ty:** {msg['user']}")
-    else:
-        st.markdown(f"**Bot:** {msg['bot']}")
+@cl.on_settings_update
+async def setup_agent(settings):
+    print("settings updated:", settings)
 
-# Przycisk do czyszczenia historii
-if st.button("🗑️ Wyczyść czat"):
-    st.session_state.history.clear()
-    st.rerun()
+@cl.set_chat_profiles
+async def chat_profile():
+    return [
+        cl.ChatProfile(
+            name="default",
+            markdown_description="standard b2b consultant mode",
+        ),
+    ]
+
+if __name__ == "__main__":
+    pass
