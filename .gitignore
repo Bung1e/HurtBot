@@ -113,3 +113,6 @@ local.settings.json
 *.tmp
 *.db
 *.sqlite
+
+#chainlit
+.chainlit
