@@ -1,5 +1,3 @@
-# ingest_all.py
-
 import json
 import os
 import uuid
@@ -7,12 +5,12 @@ from pathlib import Path
 from typing import Any
 
 from dotenv import load_dotenv
+from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import PyMuPDFLoader
 from langchain_community.vectorstores import AzureSearch
 from langchain_openai import AzureOpenAIEmbeddings
 from pydantic import SecretStr
 
-# 1. Wczytywanie zmiennych środowiskowych
 cfg = Path(__file__).parent.parent / "local.settings.json"
 if cfg.exists():
     data = json.loads(cfg.read_text("utf-8")).get("Values", {})
@@ -32,7 +30,6 @@ for env in required:
     if not os.getenv(env):
         raise ValueError(f"Brakuje zmiennej {env}")
 
-# 2. Embeddingi
 emb = AzureOpenAIEmbeddings(
     azure_deployment=os.getenv("AZURE_OPENAI_EMBEDDING_DEPLOYMENT") or "",
     model=os.getenv("AZURE_OPENAI_EMBEDDING_DEPLOYMENT") or "",
@@ -41,7 +38,6 @@ emb = AzureOpenAIEmbeddings(
     api_version="2023-07-01-preview",
 )
 
-# 3. Wczytanie produktów
 products_path = Path(__file__).parent.parent / "data" / "products.json"
 products: list[dict[str, Any]] = json.loads(products_path.read_text("utf-8"))
 
@@ -67,30 +63,44 @@ for p in products:
         }
     )
 
-print(f"🔁 Wczytano {len(prod_docs)} produktów")
+print(f"Wczytano {len(prod_docs)} produktów")
 
-# 4. Wczytanie PDF i embedding
 pdf_path = Path(__file__).parent.parent / "docs" / "REGULAMIN.pdf"
 loader = PyMuPDFLoader(str(pdf_path))
 pdf_docs = loader.load()
 
+splitter = RecursiveCharacterTextSplitter(
+    chunk_size=800,
+    chunk_overlap=150,
+    separators=[
+        "\n## ",
+        "\n### ",
+        "\n#### ",
+        "\n\n",
+        "\n",
+        ". ",
+        " ",
+    ],
+)
+
 pdf_docs_to_upload = []
 for doc in pdf_docs:
-    doc.metadata["id"] = "pdf_" + str(uuid.uuid4())
-    content = doc.page_content
-    embedding = emb.embed_documents([content])[0]
-    pdf_docs_to_upload.append(
-        {
-            "id": doc.metadata["id"],
-            "filename": "REGULAMIN.pdf",
-            "content": content,
-            "embedding": embedding,
-        }
-    )
+    chunks = splitter.split_text(doc.page_content)
+    for i, chunk in enumerate(chunks):
+        embedding = emb.embed_documents([chunk])[0]
+        pdf_docs_to_upload.append(
+            {
+                "id": f"pdf_{uuid.uuid4()!s}",
+                "filename": "REGULAMIN.pdf",
+                "content": chunk,
+                "page": doc.metadata.get("page", None),
+                "chunk_index": i,
+                "embedding": embedding,
+            }
+        )
 
-print(f"📄 Wczytano {len(pdf_docs_to_upload)} fragmentów PDF")
+print(f"Wczytano {len(pdf_docs_to_upload)} fragmentów PDF")
 
-# 5. Upload do Azure Search
 azure_products = AzureSearch(
     azure_search_endpoint=os.getenv("AZURE_SEARCH_ENDPOINT") or "",
     azure_search_key=os.getenv("AZURE_SEARCH_KEY") or "",
@@ -114,4 +124,4 @@ azure_regulamin = AzureSearch(
 azure_products.client.upload_documents(prod_docs)
 azure_regulamin.client.upload_documents(pdf_docs_to_upload)
 
-print("✅ Dokumenty zaindeksowane.")
+print("Dokumenty zaindeksowane.")
