@@ -186,7 +186,7 @@ def calculate_materials_cost(query: str) -> str:
         basic_products = find_products_in_database(basic_names)
         additional_products = find_products_in_database(additional_names)
         
-        result = f"Kalkulacja...\n\n"
+        result = "Kalkulacja...\n\n"
         
         result += "MATERIAŁY PODSTAWOWE (niezbędne):\n"
         for material in basic_materials:
