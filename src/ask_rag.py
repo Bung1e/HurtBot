@@ -35,8 +35,10 @@ load_dotenv()
 products_path = Path(__file__).parent.parent / "data" / "products.json"
 products: list[dict[str, Any]] = json.loads(products_path.read_text("utf-8"))
 
+
 def connect_sql():
     return pyodbc.connect(os.getenv("SQL_CONNECTION_STRING"))
+
 
 def get_quantity_from_sql(product_id: str) -> int | None:
     try:
@@ -50,6 +52,7 @@ def get_quantity_from_sql(product_id: str) -> int | None:
         logger.warning(f"Błąd podczas sprawdzania dostępności: {e}")
         return None
 
+
 def decrease_quantity_in_sql(product_id: str) -> int | None:
     try:
         conn = connect_sql()
@@ -58,7 +61,10 @@ def decrease_quantity_in_sql(product_id: str) -> int | None:
         row = cursor.fetchone()
         if row and row.quantity > 0:
             new_quantity = row.quantity - 1
-            cursor.execute("UPDATE stock SET quantity = ? WHERE product_id = ?", (new_quantity, product_id))
+            cursor.execute(
+                "UPDATE stock SET quantity = ? WHERE product_id = ?",
+                (new_quantity, product_id),
+            )
             conn.commit()
             conn.close()
             return new_quantity
@@ -67,6 +73,7 @@ def decrease_quantity_in_sql(product_id: str) -> int | None:
     except Exception as e:
         logger.warning(f"Błąd przy zmniejszaniu stanu magazynowego: {e}")
         return None
+
 
 def increase_quantity_in_sql(product_id: str, amount: int) -> int | None:
     try:
@@ -81,10 +88,16 @@ def increase_quantity_in_sql(product_id: str, amount: int) -> int | None:
         if row:
             current_quantity = int(row.quantity)
             new_quantity = current_quantity + amount
-            cursor.execute("UPDATE stock SET quantity = ? WHERE product_id = ?", (new_quantity, product_id))
+            cursor.execute(
+                "UPDATE stock SET quantity = ? WHERE product_id = ?",
+                (new_quantity, product_id),
+            )
         else:
             new_quantity = amount
-            cursor.execute("INSERT INTO stock (product_id, quantity) VALUES (?, ?)", (product_id, new_quantity))
+            cursor.execute(
+                "INSERT INTO stock (product_id, quantity) VALUES (?, ?)",
+                (product_id, new_quantity),
+            )
 
         conn.commit()
         conn.close()
@@ -94,8 +107,14 @@ def increase_quantity_in_sql(product_id: str, amount: int) -> int | None:
         logger.exception(f"Błąd przy dodawaniu do magazynu: {e}")
         return None
 
-def find_alternatives_by_category(category: str, exclude_id: str | None = None, max_results: int = 3) -> list[dict[str, Any]]:
-    return [p for p in products if p.get("category") == category and p.get("id") != exclude_id][:max_results]
+
+def find_alternatives_by_category(
+    category: str, exclude_id: str | None = None, max_results: int = 3
+) -> list[dict[str, Any]]:
+    return [
+        p for p in products if p.get("category") == category and p.get("id") != exclude_id
+    ][:max_results]
+
 
 def handle_product_query(query: str) -> str | None:
     lower_query = query.lower()
@@ -105,7 +124,9 @@ def handle_product_query(query: str) -> str | None:
         if name in lower_query:
             product_id = product["id"]
 
-            if any(w in lower_query for w in ["dostarczono", "dodaj", "uzupełnij", "przyjęto"]):
+            if any(
+                w in lower_query for w in ["dostarczono", "dodaj", "uzupełnij", "przyjęto"]
+            ):
                 amount_match = re.search(r"(\d+)(?:\s*(?:sztuk|sztuki|szt\.?))?", lower_query)
                 if amount_match:
                     amount = int(amount_match.group(1))
@@ -139,7 +160,8 @@ def handle_product_query(query: str) -> str | None:
                     new_quantity = decrease_quantity_in_sql(product_id)
                     return f"Zamówiono produkt '{product['name']}'. Pozostało {new_quantity} sztuk."
 
-    return None  
+    return None
+
 
 def handle_general_query(query: str) -> str:
     try:
@@ -171,7 +193,9 @@ def handle_general_query(query: str) -> str:
         if not all_docs:
             return "Nie znaleziono żadnych pasujących dokumentów."
 
-        used_categories = [d.metadata.get("category") for d in docs1 if d.metadata.get("category")]
+        used_categories = [
+            d.metadata.get("category") for d in docs1 if d.metadata.get("category")
+        ]
         alternatives: list[dict[str, Any]] = []
         if used_categories:
             primary_doc = docs1[0]
@@ -207,6 +231,7 @@ def handle_general_query(query: str) -> str:
         logger.error(f"Błąd podczas obsługi ogólnego zapytania: {e}")
         return "Wystąpił błąd podczas przetwarzania zapytania."
 
+
 def ask_rag(query: str) -> str:
     try:
         logger.info(f"Przetwarzanie zapytania: {query}")
@@ -226,6 +251,7 @@ def ask_rag(query: str) -> str:
     except Exception:
         logger.exception("Błąd wewnętrzny w ask_rag()")
         return "Wystąpił błąd wewnętrzny podczas przetwarzania zapytania."
+
 
 if __name__ == "__main__":
     q = input("Zapytaj o produkt lub regulamin: ")
