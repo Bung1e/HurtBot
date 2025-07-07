@@ -6,9 +6,7 @@ from azure.functions.decorators import FunctionApp
 
 from src.ask_rag import ask_rag
 
-logging.basicConfig(
-    level=logging.INFO, format="[%(asctime)s] [%(levelname)s] %(message)s"
-)
+logging.basicConfig(level=logging.INFO, format="[%(asctime)s] [%(levelname)s] %(message)s")
 logger = logging.getLogger(__name__)
 
 app = FunctionApp()
