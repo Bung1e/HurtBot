@@ -30,8 +30,10 @@ load_dotenv()
 products_path = Path(__file__).parent.parent / "data" / "products.json"
 products: list[dict[str, Any]] = json.loads(products_path.read_text("utf-8"))
 
+
 def connect_sql():
     return pyodbc.connect(os.getenv("SQL_CONNECTION_STRING"))
+
 
 def get_quantity_from_sql(product_id: str) -> int | None:
     try:
@@ -45,6 +47,7 @@ def get_quantity_from_sql(product_id: str) -> int | None:
         logger.warning(f"Błąd podczas sprawdzania dostępności: {e}")
         return None
 
+
 def decrease_quantity_in_sql(product_id: str) -> int | None:
     try:
         conn = connect_sql()
@@ -53,7 +56,10 @@ def decrease_quantity_in_sql(product_id: str) -> int | None:
         row = cursor.fetchone()
         if row and row.quantity > 0:
             new_quantity = row.quantity - 1
-            cursor.execute("UPDATE stock SET quantity = ? WHERE product_id = ?", (new_quantity, product_id))
+            cursor.execute(
+                "UPDATE stock SET quantity = ? WHERE product_id = ?",
+                (new_quantity, product_id),
+            )
             conn.commit()
             conn.close()
             return new_quantity
@@ -62,6 +68,7 @@ def decrease_quantity_in_sql(product_id: str) -> int | None:
     except Exception as e:
         logger.warning(f"Błąd przy zmniejszaniu stanu magazynowego: {e}")
         return None
+
 
 def increase_quantity_in_sql(product_id: str, amount: int) -> int | None:
     try:
@@ -79,13 +86,13 @@ def increase_quantity_in_sql(product_id: str, amount: int) -> int | None:
             new_quantity = current_quantity + amount
             cursor.execute(
                 "UPDATE stock SET quantity = ? WHERE product_id = ?",
-                (new_quantity, product_id)
+                (new_quantity, product_id),
             )
         else:
             new_quantity = amount
             cursor.execute(
                 "INSERT INTO stock (product_id, quantity) VALUES (?, ?)",
-                (product_id, new_quantity)
+                (product_id, new_quantity),
             )
 
         conn.commit()
@@ -97,84 +104,95 @@ def increase_quantity_in_sql(product_id: str, amount: int) -> int | None:
         return None
 
 
-
-def find_alternatives_by_category(category: str, exclude_id: str | None = None, max_results: int = 3) -> list[dict[str, Any]]:
-    candidates = [p for p in products if p.get("category") == category and p.get("id") != exclude_id]
+def find_alternatives_by_category(
+    category: str, exclude_id: str | None = None, max_results: int = 3
+) -> list[dict[str, Any]]:
+    candidates = [
+        p for p in products if p.get("category") == category and p.get("id") != exclude_id
+    ]
     return candidates[:max_results]
+
 
 def ask_rag(query: str) -> str:
     try:
         logger.info(f"Zapytanie: {query}")
         lower_query = query.lower()
 
+        response_parts = []
+
         for product in products:
             name = product["name"].lower()
             if name in lower_query:
                 product_id = product["id"]
+                product_name = product["name"]
 
                 if any(w in lower_query for w in ["dostarczono", "dodaj", "uzupełnij", "przyjęto"]):
-                    amount_match = re.search(r"(\d+)(?:\s*(?:sztuk|sztuki|szt\.?))?", lower_query)
-                    if amount_match:
-                        amount = int(amount_match.group(1))
-                        new_quantity = increase_quantity_in_sql(product_id, amount)
-                        return f"Dodano {amount} sztuk produktu '{product['name']}' do magazynu. Nowa ilość: {new_quantity}."
-                    else:
-                        return f"Nie rozpoznano liczby sztuk do dodania dla produktu '{product['name']}'."
+                    match = re.search(r"(\d+)(?:\s*(?:sztuk|sztuki|szt\.?))?", lower_query)
+                    if match:
+                        amount = int(match.group(1))
+                        new_qty = increase_quantity_in_sql(product_id, amount)
+                        return (
+                            f"Dodano {amount} sztuk produktu '{product_name}' "
+                            f"do magazynu. Nowa ilość: {new_qty}."
+                        )
+                    return (
+                        f"Nie rozpoznano liczby sztuk do dodania dla produktu '{product_name}'."
+                    )
 
                 if "dostępny" in lower_query or "na magazynie" in lower_query:
-                    quantity = get_quantity_from_sql(product_id)
-                    if quantity is None:
-                        return f"Nie mam informacji o dostępności produktu '{product['name']}'."
-                    elif quantity > 0:
-                        return f"Produkt '{product['name']}' jest dostępny – {quantity} sztuk."
-                    else:
-                        return f"Produkt '{product['name']}' jest niedostępny (brak w magazynie)."
+                    qty = get_quantity_from_sql(product_id)
+                    if qty is None:
+                        return f"Nie mam informacji o dostępności produktu '{product_name}'."
+                    if qty > 0:
+                        return f"Produkt '{product_name}' jest dostępny - {qty} sztuk."
+                    return f"Produkt '{product_name}' jest niedostępny (brak w magazynie)."
 
                 if "kup" in lower_query or "zamów" in lower_query:
-                    quantity = get_quantity_from_sql(product_id)
-                    if quantity is None:
-                        return f"Nie mam informacji o produkcie '{product['name']}'."
-                    elif quantity == 0:
-                        return f"Produkt '{product['name']}' jest wyprzedany."
-                    else:
-                        new_quantity = decrease_quantity_in_sql(product_id)
-                        return f"Zamówiono produkt '{product['name']}'. Pozostało {new_quantity} sztuk."
+                    qty = get_quantity_from_sql(product_id)
+                    if qty is None:
+                        return f"Nie mam informacji o produkcie '{product_name}'."
+                    if qty == 0:
+                        return f"Produkt '{product_name}' jest wyprzedany."
+                    new_qty = decrease_quantity_in_sql(product_id)
+                    return (
+                        f"Zamówiono produkt '{product_name}'. "
+                        f"Pozostało {new_qty} sztuk."
+                    )
+
+        # --- retrieval fallback ---
 
         search_endpoint = os.getenv("AZURE_SEARCH_ENDPOINT") or ""
-        search_service_name = search_endpoint.split("//")[-1].split(".")[0]
-        search_api_key = os.getenv("AZURE_SEARCH_KEY") or ""
+        search_service = search_endpoint.split("//")[-1].split(".")[0]
+        search_key = os.getenv("AZURE_SEARCH_KEY") or ""
 
         retriever1 = AzureAISearchRetriever(
             content_key="content",
             index_name="products-index",
             top_k=3,
-            service_name=search_service_name,
-            api_key=search_api_key,
+            service_name=search_service,
+            api_key=search_key,
         )
-
         retriever2 = AzureAISearchRetriever(
             content_key="content",
             index_name="regulamin-index",
             top_k=3,
-            service_name=search_service_name,
-            api_key=search_api_key,
+            service_name=search_service,
+            api_key=search_key,
         )
 
-        docs1 = retriever1.invoke(query)
-        docs2 = retriever2.invoke(query)
-        all_docs = docs1 + docs2
+        docs = retriever1.invoke(query) + retriever2.invoke(query)
+        logger.info(f"Liczba dokumentów znalezionych: {len(docs)}")
 
-        logger.info(f"Liczba dokumentów znalezionych: {len(all_docs)}")
-
-        if not all_docs:
+        if not docs:
             return "Nie znaleziono żadnych pasujących dokumentów."
 
-        used_categories = [d.metadata.get("category") for d in docs1 if d.metadata.get("category")]
-        alternatives: list[dict[str, Any]] = []
-        if used_categories:
-            primary_doc = docs1[0]
+        categories = [d.metadata.get("category") for d in docs if d.metadata.get("category")]
+        alternatives = []
+        if categories:
+            alt_category = categories[0]
+            primary_doc = docs[0]
             alternatives = find_alternatives_by_category(
-                category=str(used_categories[0]),
+                category=str(alt_category),
                 exclude_id=str(primary_doc.metadata.get("id", "")),
             )
 
@@ -184,27 +202,27 @@ def ask_rag(query: str) -> str:
             model=os.getenv("AZURE_OPENAI_CHAT_DEPLOYMENT") or "",
             temperature=0.0,
         )
-
         prompt = PromptTemplate.from_template(
             "Jesteś inteligentnym asystentem klienta hurtowni B2B.\n"
             "Odpowiadaj wyłącznie na podstawie poniższych dokumentów:\n\n"
             "{context}\n\nPytanie: {input}\nOdpowiedź:"
         )
-
         chain = create_stuff_documents_chain(llm=llm, prompt=prompt)
-        response = chain.invoke({"input": query, "context": all_docs})
+        answer = chain.invoke({"input": query, "context": docs})
 
         if alternatives:
             alt_text = "\n\nAlternatywne produkty w tej samej kategorii:\n"
             for alt in alternatives:
                 alt_text += f"- {alt.get('name')} — {alt.get('description')}\n"
-            response += alt_text
+            answer += alt_text
 
-        return str(response)
+        return str(answer)
 
     except Exception:
         logger.exception("Błąd wewnętrzny w ask_rag()")
         return "Wystąpił błąd wewnętrzny podczas przetwarzania zapytania."
+
+
 
 if __name__ == "__main__":
     q = input("Zapytaj o produkt lub regulamin: ")
