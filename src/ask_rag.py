@@ -4,6 +4,7 @@ import os
 import re
 from pathlib import Path
 import sys
+
 sys.path.append(str(Path(__file__).resolve().parents[1]))
 from typing import Any
 
@@ -110,7 +111,7 @@ def handle_general_query(query: str) -> str:
         if product_details:
             sql_info_doc = Document(
                 page_content="\n".join(product_details),
-                metadata={"source": "sql", "type": "product_data"}
+                metadata={"source": "sql", "type": "product_data"},
             )
             enriched_docs.append(sql_info_doc)
 
@@ -134,7 +135,6 @@ def handle_general_query(query: str) -> str:
     except Exception as e:
         logger.error(f"Błąd w handle_general_query: {e}")
         return "Wystąpił błąd przetwarzania zapytania."
-
 
 
 def ask_rag(query: str) -> str:
