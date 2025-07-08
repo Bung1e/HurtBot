@@ -52,3 +52,15 @@ jobs:
       run: |
         uv pip install pytest pytest-cov
         pytest --cov=ask_rag --cov-report=term
+
+    - name: Debug on failure
+      if: failure()
+      run: |
+        echo "Debug info:"
+        ls -la
+        echo "---"
+        echo "PATH: $PATH"
+        echo "---"
+        which uv || echo "uv not found"
+        which python || echo "python not found"
+        env | grep -i "uv\|python\|venv"
