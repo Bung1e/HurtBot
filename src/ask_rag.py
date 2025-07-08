@@ -1,11 +1,11 @@
 import json
 import logging
 import os
-import re
-from pathlib import Path
 import sys
+from pathlib import Path
 
 sys.path.append(str(Path(__file__).resolve().parents[1]))
+import difflib
 from typing import Any
 
 import pyodbc
@@ -13,10 +13,8 @@ from dotenv import load_dotenv
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
 from langchain_community.retrievers import AzureAISearchRetriever
-from langchain_core.prompts import PromptTemplate
-
-import difflib
 from langchain_core.documents import Document
+from langchain_core.prompts import PromptTemplate
 
 from src.calc_materials import calculate_materials_cost, determine_query_type
 
@@ -123,7 +121,8 @@ def handle_general_query(query: str) -> str:
         )
 
         prompt = PromptTemplate.from_template(
-            "Jesteś asystentem klienta hurtowni B2B. Odpowiedz na podstawie poniższych dokumentów:\n\n"
+            "Jesteś asystentem klienta hurtowni B2B.\n"
+            "Odpowiedz na podstawie poniższych dokumentów:\n\n"
             "{context}\n\nPytanie: {input}\nOdpowiedź:"
         )
 
