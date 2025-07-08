@@ -23,21 +23,32 @@ jobs:
       run: |
         curl -LsSf https://astral.sh/uv/install.sh | sh
         echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+        echo "$HOME/.local/bin" >> $GITHUB_PATH
 
-    - name: Create virtual environment and install dependencies
+    - name: Create virtual environment
       run: |
         uv venv
-        .venv/bin/uv pip install -e ".[dev]"
-        .venv/bin/uv pip install deepeval langchain-azure-ai
 
-    - name: Format code
-      run: .venv/bin/ruff format .
+    - name: Install dependencies (including deepeval + langchain_azure_ai)
+      run: |
+        uv pip install -e ".[dev]"
+        uv pip install deepeval langchain-azure-ai
 
-    - name: Lint code
-      run: .venv/bin/ruff check .
+    - name: Run Ruff format
+      run: |
+        uv pip install ruff
+        ruff format .
 
-    - name: Static type check
-      run: .venv/bin/mypy .
+    - name: Run Ruff check
+      run: |
+        ruff check .
 
-    - name: Run tests
-      run: .venv/bin/pytest --cov=ask_rag --cov-report=term
+    - name: Run mypy
+      run: |
+        uv pip install mypy
+        mypy .
+
+    - name: Run tests with coverage
+      run: |
+        uv pip install pytest pytest-cov
+        pytest --cov=ask_rag --cov-report=term
