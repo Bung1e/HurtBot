@@ -4,6 +4,7 @@ import os
 from pathlib import Path
 from typing import Any
 
+import pyodbc
 from dotenv import load_dotenv
 from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
 from langchain_community.retrievers import AzureAISearchRetriever
@@ -25,6 +26,23 @@ if cfg.exists():
         os.environ.setdefault(k, v)
 
 load_dotenv()
+
+
+def connect_sql():
+    return pyodbc.connect(os.getenv("SQL_CONNECTION_STRING"))
+
+def get_product_quantity_and_price(product_id: str) -> tuple[int, float] | None:
+
+    try:
+        conn = connect_sql()
+        cursor = conn.cursor()
+        cursor.execute("SELECT quantity, price FROM stock WHERE product_id = ?", product_id)
+        row = cursor.fetchone()
+        conn.close()
+        return (row.quantity, row.price) if row else None
+    except Exception as e:
+        logger.warning(f"SQL Error: {e}")
+        return None
 
 
 def determine_query_type(query: str) -> str:
@@ -80,9 +98,6 @@ def determine_query_type(query: str) -> str:
 
 
 def search_materials_info(query: str) -> str:
-    """
-    wyszukuje informacje o materiałach w internecie
-    """
     try:
         search_query = f"materiały budowlane potrzebne do {query} lista ilość"
         search = DuckDuckGoSearchRun()
@@ -95,9 +110,6 @@ def search_materials_info(query: str) -> str:
 
 
 def find_products_in_database(materials_list: list[str]) -> list[dict[str, Any]]:
-    """
-    wyszukuje produkty w bazie danych
-    """
     try:
         search_endpoint = os.getenv("AZURE_SEARCH_ENDPOINT") or ""
         search_service_name = search_endpoint.split("//")[-1].split(".")[0]
@@ -123,6 +135,21 @@ def find_products_in_database(materials_list: list[str]) -> list[dict[str, Any]]
                         "metadata": doc.metadata,
                         "search_term": material,
                     }
+                    
+                    product_id = doc.metadata.get("id")
+                    if product_id:
+                        sql_data = get_product_quantity_and_price(product_id)
+                        if sql_data:
+                            quantity, price = sql_data
+                            product_info["current_quantity"] = quantity
+                            product_info["current_price"] = price
+                        else:
+                            product_info["current_quantity"] = 0
+                            product_info["current_price"] = None
+                    else:
+                        product_info["current_quantity"] = 0
+                        product_info["current_price"] = None
+                    
                     found_products.append(product_info)
 
             except Exception as e:
@@ -137,7 +164,7 @@ def find_products_in_database(materials_list: list[str]) -> list[dict[str, Any]]
 
 def calculate_materials_cost(query: str) -> str:
     """
-    kalkulacja materiałów z podziałem na podstawowe i dodatkowe
+    kalkulacja materiałów
     """
     try:
         logger.info(f"Kalkulacja materiałów dla: {query}")
@@ -184,7 +211,7 @@ def calculate_materials_cost(query: str) -> str:
         basic_products = find_products_in_database(basic_names)
         additional_products = find_products_in_database(additional_names)
 
-        result = "Kalkulacja...\n\n"
+        result = "KALKULACJA MATERIAŁÓW\n\n"
 
         result += "MATERIAŁY PODSTAWOWE (niezbędne):\n"
         for material in basic_materials:
@@ -199,11 +226,18 @@ def calculate_materials_cost(query: str) -> str:
             ]
 
             if matching_products:
-                result += "  ✅ Dostępne produkty:\n"
+                result += "  Dostępne produkty:\n"
                 for product in matching_products[:2]:  # max 2 produkty
                     name = product["metadata"].get("name", "Produkt")
-                    price = product["metadata"].get("price", "cena niedostępna")
-                    result += f"    - {name}: {price} zł\n"
+                    
+                    current_price = product.get("current_price")
+                    current_quantity = product.get("current_quantity", 0)
+                    
+                    if current_price is not None:
+                        availability = "✅ Dostępny" if current_quantity > 0 else "❌ Brak w magazynie"
+                        result += f"    - {name}: {current_price} zł ({availability}, {current_quantity} szt.)\n"
+                    else:
+                        result += f"    - {name}: ❌ Brak danych o cenie i dostępności\n"
             else:
                 result += "  ❌ Produkt niedostępny w naszej ofercie\n"
 
@@ -225,17 +259,25 @@ def calculate_materials_cost(query: str) -> str:
                 ]
 
                 if matching_products:
-                    result += "  ✅ Dostępne produkty:\n"
+                    result += " Dostępne produkty:\n"
                     for product in matching_products[:2]:
                         name = product["metadata"].get("name", "Produkt")
-                        price = product["metadata"].get("price", "cena niedostępna")
-                        result += f"    - {name}: {price} zł\n"
+                        
+                        current_price = product.get("current_price")
+                        current_quantity = product.get("current_quantity", 0)
+                        
+                        if current_price is not None:
+                            availability = "✅ Dostępny" if current_quantity > 0 else "❌ Brak w magazynie"
+                            result += f"    - {name}: {current_price} zł ({availability}, {current_quantity} szt.)\n"
+                        else:
+                            result += f"    - {name}: ❌ Brak danych o cenie i dostępności\n"
                 else:
                     result += "  ❌ Produkt niedostępny w naszej ofercie\n"
 
                 result += "\n"
 
-        result += "\nPotrzebujesz dokładnej wyceny? Skontaktuj się z naszym doradcą!"
+        result += "Potrzebujesz dokładnej wyceny? Skontaktuj się z naszym doradcą!\n"
+        result += "Ceny i dostępność sprawdzane w czasie rzeczywistym."
 
         return result
 
