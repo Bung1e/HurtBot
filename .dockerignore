@@ -1,0 +1,62 @@
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.venv/
+venv/
+.env
+
+# UV
+.uv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+.gitignore
+
+# Docker
+Dockerfile
+docker-compose*.yml
+.dockerignore
+
+# Logs
+*.log
+logs/
+
+# Cache
+.mypy_cache/
+.ruff_cache/
+.deepeval/
+
+# Azure Functions
+.azure/
+local.settings.json
+
+# Documentation
+docs/
+*.md
+
+# Test files
+tests/
+eval/
+
+# Development
+.env.local
+.env.development

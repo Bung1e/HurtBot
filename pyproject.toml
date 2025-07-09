@@ -18,7 +18,9 @@ dependencies = [
   "python-dotenv>=1.0.0",
   "azure-functions>=1.23.0",
   "chainlit",
-  "duckduckgo-search"
+  "duckduckgo-search",
+  "langchain-azure-ai",
+  "pyodbc"
 ]
 
 
