@@ -19,7 +19,8 @@ dependencies = [
   "azure-functions>=1.23.0",
   "chainlit",
   "duckduckgo-search",
-  "langchain-azure-ai"
+  "langchain-azure-ai",
+  "pyodbc"
 ]
 
 
