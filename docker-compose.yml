@@ -3,7 +3,7 @@ version: '3.8'
 services:
   azurefunc:
     build: .
-    command: func start
+    command: func host start
     ports:
       - "7071:7071"
     volumes:
@@ -24,6 +24,8 @@ services:
       - "8000:8000"
     volumes:
       - .:/app
+    depends_on:
+      azurefunc
     environment:
       - API_URL=http://azurefunc:7071/api/ask_rag
     working_dir: /app 
