@@ -44,7 +44,6 @@ def test_ask_rag_relevancy_eval() -> None:
     results = evaluate([test_case], [metric])
     min_acceptable_score = 0.7
 
-
     assert results[0].score >= min_acceptable_score, (
         f"Odpowiedź była zbyt słabo związana z kontekstem (score={results[0].score})"
     )

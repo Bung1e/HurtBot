@@ -86,15 +86,13 @@ splitter = RecursiveCharacterTextSplitter(
 pdf_docs_to_upload = []
 for doc in pdf_docs:
     chunks = splitter.split_text(doc.page_content)
-    for i, chunk in enumerate(chunks):
+    for chunk in chunks:
         embedding = emb.embed_documents([chunk])[0]
         pdf_docs_to_upload.append(
             {
-                "id": f"pdf_{uuid.uuid4()!s}",
+                "id": f"pdf_{uuid.uuid4()}",
                 "filename": "REGULAMIN.pdf",
                 "content": chunk,
-                "page": doc.metadata.get("page", None),
-                "chunk_index": i,
                 "embedding": embedding,
             }
         )
