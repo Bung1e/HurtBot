@@ -19,7 +19,17 @@ Prosty chatbot dla hurtowni B2B, zbudowany w oparciu o Azure Cognitive Search, A
 
 ## 🛠 Instalacja lokalna
 
-1. Sklonuj repo:
-   ```bash
-   git clone https://github.com/Bung1e/HurtBot
-   cd HurtBot
+1.  **Sklonuj repozytorium:**
+    ```bash
+    git clone https://github.com/Bung1e/HurtBot
+    cd HurtBot
+    ```
+
+2.  **Skonfiguruj zmienne środowiskowe:**
+    Utwórz plik `.env` w katalogu głównym projektu, uzupełniając swoje dane uwierzytelniające Azure OpenAI i Azure Cognitive Search.
+
+3.  **Zbuduj i uruchom usługi:**
+    ```bash
+    docker-compose up --build
+    ```
+    Spowoduje to zbudowanie obrazów Docker i uruchomienie zarówno funkcji Azure, jak i interfejsu Chainlit. Frontend będzie dostępny pod adresem `http://localhost:8000`.

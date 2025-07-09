@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  azurefunc:
+    build: .
+    command: func start
+    ports:
+      - "7071:7071"
+    volumes:
+      - .:/app
+    environment:
+      - AZURE_FUNCTIONS_ENVIRONMENT=Development
+      - AZURE_SEARCH_ENDPOINT=${AZURE_SEARCH_ENDPOINT}
+      - AZURE_SEARCH_KEY=${AZURE_SEARCH_KEY}
+      - AZURE_FOUNDRY_ENDPOINT=${AZURE_FOUNDRY_ENDPOINT}
+      - AZURE_FOUNDRY_KEY=${AZURE_FOUNDRY_KEY}
+      - AZURE_OPENAI_CHAT_DEPLOYMENT=${AZURE_OPENAI_CHAT_DEPLOYMENT}
+    working_dir: /app
+
+  chainlit:
+    build: .
+    command: chainlit run src/frontend.py --host 0.0.0.0 --port 8000
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    environment:
+      - API_URL=http://azurefunc:7071/api/ask_rag
+    working_dir: /app 
