@@ -26,7 +26,7 @@ services:
     volumes:
       - .:/app
     depends_on:
-      azurefunc
+      - azurefunc
     environment:
       - API_URL=http://azurefunc:7071/api/ask_rag
     working_dir: /app 
