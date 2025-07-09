@@ -3,12 +3,13 @@ import logging
 import os
 import sys
 from pathlib import Path
-
-sys.path.append(str(Path(__file__).resolve().parents[1]))
-import difflib
 from typing import Any
 
+sys.path.append(str(Path(__file__).resolve().parents[1]))
+
 import pyodbc
+from azure.core.credentials import AzureKeyCredential
+from azure.search.documents import SearchClient
 from dotenv import load_dotenv
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
@@ -26,15 +27,21 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 load_dotenv()
-
 cfg = Path(__file__).parent.parent / "local.settings.json"
 if cfg.exists():
     data = json.loads(cfg.read_text("utf-8")).get("Values", {})
     for k, v in data.items():
         os.environ.setdefault(k, v)
 
-products_path = Path(__file__).parent.parent / "data" / "products.json"
-products: list[dict[str, Any]] = json.loads(products_path.read_text("utf-8"))
+search_endpoint = os.getenv("AZURE_SEARCH_ENDPOINT")
+search_key = os.getenv("AZURE_SEARCH_KEY")
+products_index = "products-index"
+
+search_client_products = SearchClient(
+    endpoint=search_endpoint,
+    index_name=products_index,
+    credential=AzureKeyCredential(search_key),
+)
 
 
 def connect_sql():
@@ -54,33 +61,56 @@ def get_product_quantity_and_price(product_id: str) -> tuple[int, float] | None:
         return None
 
 
+def find_best_product_match(query: str) -> dict[str, Any] | None:
+    try:
+        results = search_client_products.search(
+            search_text=query,
+            top=1,
+            search_fields=["name"],
+        )
+        for doc in results:
+            return doc
+    except Exception as e:
+        logger.warning(f"Błąd w wyszukiwaniu produktu: {e}")
+    return None
+
+
 def find_alternatives_by_category(
     category: str, exclude_id: str | None = None, max_results: int = 3
 ) -> list[dict[str, Any]]:
-    return [
-        p for p in products if p.get("category") == category and p.get("id") != exclude_id
-    ][:max_results]
+    try:
+        filter_query = f"category eq '{category}'"
+        if exclude_id:
+            filter_query += f" and id ne '{exclude_id}'"
+        results = search_client_products.search(
+            search_text="*",
+            filter=filter_query,
+            top=max_results,
+        )
+        return [doc for doc in results]
+    except Exception as e:
+        logger.warning(f"Błąd przy wyszukiwaniu zamienników: {e}")
+        return []
 
 
 def handle_general_query(query: str) -> str:
     try:
         logger.info(f"General query: {query}")
-        search_service_name = os.getenv("AZURE_SEARCH_ENDPOINT").split("//")[-1].split(".")[0]
-        search_api_key = os.getenv("AZURE_SEARCH_KEY")
+        search_service_name = search_endpoint.split("//")[-1].split(".")[0]
 
         retriever_products = AzureAISearchRetriever(
             content_key="content",
             index_name="products-index",
             top_k=3,
             service_name=search_service_name,
-            api_key=search_api_key,
+            api_key=search_key,
         )
         retriever_regulamin = AzureAISearchRetriever(
             content_key="content",
             index_name="regulamin-index",
             top_k=3,
             service_name=search_service_name,
-            api_key=search_api_key,
+            api_key=search_key,
         )
 
         docs_products = retriever_products.invoke(query)
@@ -90,13 +120,12 @@ def handle_general_query(query: str) -> str:
         if not all_docs:
             return "Brak informacji w bazie wiedzy."
 
-        product_names = {p["name"]: p["id"] for p in products}
-        best_matches = difflib.get_close_matches(query, product_names.keys(), n=1, cutoff=0.5)
-
         product_details = []
-        if best_matches:
-            matched_name = best_matches[0]
-            matched_id = product_names[matched_name]
+        matched_product = find_best_product_match(query)
+
+        if matched_product:
+            matched_name = matched_product["name"]
+            matched_id = matched_product["id"]
 
             sql_data = get_product_quantity_and_price(matched_id)
             if sql_data:
